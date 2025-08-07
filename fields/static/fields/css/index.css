@@ -36,14 +36,12 @@ a {
     width: 100%;
     position: fixed;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     justify-content: center;
     height: 5rem;
-    padding: 1rem 2rem;
+    padding: 1rem;
     background-color: var(--header-bg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra sutil vinda de baixo */
-    position: relative;
     z-index: 10;
 }
 
@@ -89,6 +87,7 @@ a {
 
 /* Estilos do Container Principal */
 .container {
+    margin-top: 7rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -99,8 +98,8 @@ a {
 /* Estilos da Barra de Filtros */
 .filter-bar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    position: relative;
     width: 100%;
     gap: 1rem;
     background-color: var(--filter-bg);
@@ -112,6 +111,7 @@ a {
 
 .filter-group {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex: 1;
     min-width: 150px;
@@ -138,20 +138,40 @@ a {
     color: var(--placeholder-color);
 }
 
-.ts-wrapper {
-    width: 100%;
+.autocomplete-suggestions {
+    border: 1px solid #ccc;
+    display: none;
+    max-height: 12rem;
+    overflow-y: auto;
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
+    }
+
+.autocomplete-suggestion {
+    padding: 8px;
 }
 
-.ts-control {
-    border: 1px solid #ccc !important;
-    border-radius: 25px !important;
-    padding: 0.75rem !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 1rem !important;
-    background: white !important;
-    min-height: auto !important;
-    box-shadow: none !important;
-    line-height: 1rem !important;
+.autocomplete-suggestion:hover {
+    background-color: #f0f0f0;
+    cursor: default;
+}
+
+.search-state-container,
+.search-city-container {
+    padding-top: 0.25rem;
+    position: absolute;
+    top: 100%;
+    display: none;
+}
+
+.search-state-container.visible,
+.search-city-container.visible{
+    display: block;
+}
+
+.readonly-field {
+    cursor: default;
 }
 
 .btn-search {
