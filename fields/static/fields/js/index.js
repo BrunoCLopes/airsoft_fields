@@ -1,13 +1,23 @@
 const filledStateField = document.getElementById('filter-state');
 const filledCityField = document.getElementById('filter-city');
+const filledTypeField = document.getElementById('field-type');
+const filledNameField = document.getElementById('field-name');
+
 const searchStateContainer = document.getElementById('search-state-container');
-const searchCityContainer = document.getElementById('search-city-container')
+const searchCityContainer = document.getElementById('search-city-container');
+const appliedFiltersContainer = document.getElementById('applied-filters-container');
+
 const searchStateInput = document.getElementById('search-state');
 const searchCityInput = document.getElementById('search-city');
+
 const stateSuggestions = document.getElementById('state-suggestions');
 const citySuggestions = document.getElementById('city-suggestions');
+const fieldOptions = document.getElementById('field-type-options');
 
-let states = [];
+const typeOption = document.getElementsByClassName('type-option')
+
+const searchButton = document.getElementById('search-button-filter')
+
 
 async function loadStates() {
     try {
@@ -29,40 +39,75 @@ async function loadCities(stateId){
     }
 }
 
+function createFilterTag(value){
+    const filterTag = document.createElement('button');
+    filterTag.classList.add('applied-filter');
+    filterTag.textContent = value;
+
+    const icon = document.createElement('i');
+    icon.classList.add('fa-solid', 'fa-xmark');
+
+    filterTag.addEventListener('click', () => {
+        filterTag.removeChild(icon);
+        appliedFiltersContainer.removeChild(filterTag);
+    });
+
+    appliedFiltersContainer.appendChild(filterTag);
+    filterTag.appendChild(icon);
+}
+
+
 filledStateField.addEventListener('click', () => {
-    if (searchStateContainer.classList.contains('visible')) {
+    if(searchStateContainer.classList.contains('visible')){
         searchStateContainer.classList.remove('visible');
         stateSuggestions.style.display = 'none'
-        stateSuggestions.innerHTML = '';
         searchStateInput.value = '';
-    } else {
+        stateSuggestions.innerHTML = '';
+    }else{
         searchStateContainer.classList.add('visible');
         searchStateInput.focus();
     }
 });
 
 filledCityField.addEventListener('click', () => {
-    if (searchCityContainer.classList.contains('visible')) {
-        searchCityContainer.classList.remove('visible');
-    } else {
+    if(searchCityContainer.classList.contains('visible')){
+        searchCityContainer.classList.remove('visible')
+        citySuggestions.style.display = 'none'
+        searchCityInput.value = '';
+        citySuggestions.innerHTML = '';
+    }else{
         searchCityContainer.classList.add('visible');
         searchCityInput.focus();
     }
 });
 
-document.addEventListener('click', (e) => {
-    if (
-    !searchStateContainer.contains(e.target) &&
-    e.target !== filledStateField
-    ) {
-    searchStateContainer.classList.remove('visible');
-    stateSuggestions.style.display = 'none'
-    stateSuggestions.innerHTML = '';
-    searchStateInput.value = '';
+filledTypeField.addEventListener('click', () => {
+    if(fieldOptions.classList.contains('visible')){
+        fieldOptions.classList.remove('visible');
+    }else{
+        fieldOptions.classList.add('visible');
     }
 });
 
+document.addEventListener('click', (e) => {
+    if (!searchStateContainer.contains(e.target) && e.target !== filledStateField) {
+        searchStateContainer.classList.remove('visible');
+        stateSuggestions.style.display = 'none';
+        stateSuggestions.innerHTML = '';
+        searchStateInput.value = '';
+    }
 
+    if (!searchCityContainer.contains(e.target) && e.target !== filledCityField) {
+        searchCityContainer.classList.remove('visible');
+        citySuggestions.style.display = 'none';
+        citySuggestions.innerHTML = '';
+        searchCityInput.value = '';
+    }
+
+    if (!fieldOptions.contains(e.target) && e.target !== filledTypeField) {
+        fieldOptions.classList.remove('visible');
+    }    
+});
 
 searchStateInput.addEventListener('input', () => {
     const value = searchStateInput.value.toLowerCase();
@@ -121,6 +166,47 @@ searchCityInput.addEventListener('input', () => {
         });
         citySuggestions.appendChild(div);
     });
+});
+
+Array.from(typeOption).forEach(option => {
+    option.addEventListener('click', () => {
+        filledTypeField.value = option.textContent;
+        fieldOptions.classList.remove('visible');
+    });
+});
+
+searchButton.addEventListener('click', () =>{
+    const name = filledNameField.value;
+    const state = filledStateField.value;
+    const city = filledCityField.value;
+    const type = filledTypeField.value;
+
+    if(name){
+        createFilterTag(name, () =>{
+            name = '';
+        });
+    }
+
+    if(state){
+        createFilterTag(state, () =>{
+            state = '';
+            filledCityField.disabled = true;
+            citySuggestions.innerHTML = '';
+        });
+    }
+
+    if(city){
+        createFilterTag(city, () =>{
+            city = '';
+        });
+    }
+ 
+    if(type){
+        createFilterTag(type, () =>{
+        });
+        type = '';
+    }
+
 });
 
 loadStates();
