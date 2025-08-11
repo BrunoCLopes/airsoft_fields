@@ -141,10 +141,9 @@
 }
 
 .btn-search:hover {
-    background-color: #1f7aaf;
+    background-color: var(--hover-blue-color);
 }
 
-/* Estilos da Área do Mapa */
 .fields-container {
     width: 50%;
     border-radius: 8px;

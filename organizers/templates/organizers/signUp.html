@@ -1,1 +1,24 @@
 {% extends 'organizers/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'organizers/css/signUp.css' %}">
+{% endblock %}
+{% block content %}
+<form action="">
+    <div class="form-group">
+        <label for="user">Usuário</label>
+        <input placeholder="Informe um nome de usuário" id="user" type="text" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input placeholder="Informe um email válido" id="email" type="email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Senha</label>
+        <input placeholder="Informe uma senha" id="password" type="password" required>
+    </div>
+    <div class="btn-container">
+        <button class="btn-submit" type="submit">Enviar</button>
+    </div>
+</form>
+{% endblock %}
