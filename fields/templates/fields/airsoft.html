@@ -1,0 +1,30 @@
+{% extends "fields/base.html" %}
+{% load static %}
+{% block title %}
+Airsoft
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'fields/css/airsoft.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="about-section">
+    <div class="about-container">
+        <h1 class="about-title">Sobre o Airsoft</h1>
+        <p class="about-description">O <strong>Airsoft</strong> é um esporte de simulação de combate em que os jogadores utilizam réplicas de armas de fogo, conhecidas como AEGs ou GBBs, para atirar pequenas esferas de plástico de 6mm. Diferente do paintball, o Airsoft foca no realismo tático, na estratégia e, acimas de tudo, na honestidade dos participantes.</p>
+        
+        <p class="about-description">Nascido no Japão, o esporte se espalhou pelo mundo e conquistou milhares de entusiastas. É uma atividade que promove trabalho em equipe, disciplina e respeito, sendo ideal para quem busca uma experiência tática imersiva e segura.</p>
+
+        <h2 class="about-title">Regras Básicas do Jogo</h2>
+        <p class="about-description">Para garantir a segurança e a diversão de todos, o Airsoft se baseia em algumas regras fundamentais:</p>
+        
+        <ul class="rules-list">
+            <li><strong>Honestidade:</strong> Quando um jogador é atingido, ele deve se declarar "morto" imediatamente, levantando a mão, gritando "morto" ou usando um pano vermelho, e se retirando do campo.</li>
+            <li><strong>Equipamentos de Segurança:</strong> O uso de óculos de proteção é obrigatório em 100% do tempo dentro do campo de jogo. Luvas e proteções faciais são altamente recomendadas.</li>
+            <li><strong>Distância Mínima:</strong> É crucial respeitar a distância mínima de engajamento. Atirar em alguém a curta distância pode ser perigoso e antiético.</li>
+            <li><strong>AEGs Seguras:</strong> Todas as armas de Airsoft devem passar por uma inspeção (cronagem) para garantir que estejam dentro dos limites de velocidade de saída (FPS) permitidos pelo campo.</li>
+        </ul>
+
+        <p class="about-description">Navegue em nosso portal para encontrar campos que seguem essas e outras regras para que você possa praticar o esporte com total segurança e respeito.</p>
+    </div>
+</section>
+{% endblock %}

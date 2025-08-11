@@ -1,89 +1,62 @@
+{% extends "fields/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% block head %}
+<link rel="stylesheet" href="{% static 'fields/css/index.css' %}">
+{% endblock %}
+{% block content %}
+<div class="filter-bar">
+    <div class="filter-group">
+        <label for="field-name">Nome do Campo</label>
+        <input type="text" id="field-name" placeholder="Digite o nome">
+    </div>
+    <div class="filter-group">
+        <label for="state">Estado</label>
+        <input type="text" id="filter-state" class="input readonly-field" readonly
+            placeholder="Selecione">
+        <div class="search-state-container" id="search-state-container">
+            <input type="text" id="search-state" class="search-input" placeholder="Digite o Estado..."
+                autocomplete="off">
+            <div id="state-suggestions" class="autocomplete-suggestions"></div>
+        </div>
+    </div>
+    <div class="filter-group">
+        <label for="city">Cidade</label>
+        <input type="text" id="filter-city" class="input readonly-field" readonly
+            placeholder="Selecione" disabled>
+        <div class="search-city-container" id="search-city-container">
+            <input type="text" id="search-city" class="search-input" placeholder="Digite a cidade..."
+                autocomplete="off">
+            <div id="city-suggestions" class="autocomplete-suggestions"></div>
+        </div>
+    </div>
+    <div class="filter-group">
+        <label for="field-type">Tipo de Campo</label>
+        <input type="text" id="field-type" class="input readonly-field" readonly
+            placeholder="Selecione">
+        <div id="field-type-options" class="options">
+            <div class="type-option option">Todos</div>
+            <div class="type-option option">CQB</div>
+            <div class="type-option option">Mata</div>
+            <div class="type-option option">Misto</div>
+        </div>
+    </div>
+    <button id="search-button-filter" class="btn-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+</div>
+<div id="applied-filters-container" class="applied-filters-container"></div>
+<div class="fields-container">
+    <div class="map-placeholder">
+        <p>Lista dos campos</p>
+    </div>
+</div>
+<div class="fields-container">
+    <div class="map-placeholder">
+        <p>Lista dos campos</p>
+    </div>
+</div>
+{% endblock content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airsoft Fields</title>
-    <link rel="stylesheet" href="{% static 'fields/css/index.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <header class="header">
-        <div class="header-left">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-map-marker-alt"></i>
-            </a>
-        </div>
-        <nav class="header-center">
-            <a href="#" class="nav-item active">Campos</a>
-            <a href="#" class="nav-item">Sobre</a>
-            <a href="#" class="nav-item">Airsoft</a>
-        </nav>
-        <div class="header-right">
-            <a href="#" class="btn-login">Login</a>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="filter-bar">
-            <div class="filter-group">
-                <label for="field-name">Nome do Campo</label>
-                <input type="text" id="field-name" placeholder="Digite o nome">
-            </div>
-            <div class="filter-group">
-                <label for="state">Estado</label>
-                <input type="text" id="filter-state" class="input readonly-field" readonly
-                    placeholder="Selecione">
-                <div class="search-state-container" id="search-state-container">
-                    <input type="text" id="search-state" class="search-input" placeholder="Digite o Estado..."
-                        autocomplete="off">
-                    <div id="state-suggestions" class="autocomplete-suggestions"></div>
-                </div>
-            </div>
-            <div class="filter-group">
-                <label for="city">Cidade</label>
-                <input type="text" id="filter-city" class="input readonly-field" readonly
-                    placeholder="Selecione" disabled>
-                <div class="search-city-container" id="search-city-container">
-                    <input type="text" id="search-city" class="search-input" placeholder="Digite a cidade..."
-                        autocomplete="off">
-                    <div id="city-suggestions" class="autocomplete-suggestions"></div>
-                </div>
-            </div>
-            <div class="filter-group">
-                <label for="field-type">Tipo de Campo</label>
-                <input type="text" id="field-type" class="input readonly-field" readonly
-                    placeholder="Selecione">
-                <div id="field-type-options" class="options">
-                    <div class="type-option option">Todos</div>
-                    <div class="type-option option">CQB</div>
-                    <div class="type-option option">Mata</div>
-                    <div class="type-option option">Misto</div>
-                </div>
-            </div>
-            <button id="search-button-filter" class="btn-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
-        <div id="applied-filters-container" class="applied-filters-container"></div>
-        <div class="fields-container">
-            <div class="map-placeholder">
-                <p>Lista dos campos</p>
-            </div>
-        </div>
-        <div class="fields-container">
-            <div class="map-placeholder">
-                <p>Lista dos campos</p>
-            </div>
-        </div>
-    </main>
-    <script src="{% static 'fields/js/index.js' %}"></script>
-</body>
-</html>
+{% block javascript %}
+<script src="{% static 'fields/js/index.js' %}"></script>
+{% endblock %}

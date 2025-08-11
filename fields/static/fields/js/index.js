@@ -176,37 +176,34 @@ Array.from(typeOption).forEach(option => {
 });
 
 searchButton.addEventListener('click', () =>{
+    appliedFiltersContainer.innerHTML = '';
+
     const name = filledNameField.value;
     const state = filledStateField.value;
     const city = filledCityField.value;
     const type = filledTypeField.value;
 
     if(name){
-        createFilterTag(name, () =>{
-            name = '';
-        });
+        createFilterTag(name);
+        filledNameField.value = '';
     }
 
     if(state){
-        createFilterTag(state, () =>{
-            state = '';
-            filledCityField.disabled = true;
-            citySuggestions.innerHTML = '';
-        });
+        createFilterTag(state);
+        filledStateField.value = '';
+        filledCityField.disabled = true;
+        citySuggestions.innerHTML = '';
     }
 
     if(city){
-        createFilterTag(city, () =>{
-            city = '';
-        });
+        createFilterTag(city);
+        filledCityField.value = '';
     }
  
     if(type){
-        createFilterTag(type, () =>{
-        });
-        type = '';
-    }
-
+        createFilterTag(type);
+        filledTypeField.value = '';
+    }  
 });
 
 loadStates();

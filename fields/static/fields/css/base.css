@@ -1,0 +1,93 @@
+:root {
+    --bg-color: #ffffff;
+    --header-bg: #ffffff;
+    --white: #ffffff;
+    --container-bg: #333;
+    --filter-bg: #fff;
+    --text-color: #1d2731;
+    --primary-color: #328cc1; 
+    --accent-color: #d9b310; 
+    --placeholder-color: #666;
+}
+
+body {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    gap: 5rem;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    padding: 1rem;
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra sutil vinda de baixo */
+    z-index: 10;
+}
+
+.header-left .logo {
+    font-size: 4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    font-weight: 500;
+    font-size: 1.25rem;
+    transition: color 0.3s;
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-item:hover{
+    color: var(--primary-color);
+    opacity: 70%;
+}
+
+.btn-login {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #f7f7f7;
+}
+
+/* Estilos do Container Principal */
+.container {
+    margin-top: 7rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
