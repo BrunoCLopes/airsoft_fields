@@ -25,12 +25,20 @@
             <a href={% url 'airsoft' %} class="nav-item {% if request.resolver_match.url_name == 'airsoft' %}active{% endif %}">Airsoft</a>
         </nav>
         <div class="header-right">
-            <a href={% url 'signUp' %} class="btn-login">Login</a>
+            <a href={% url 'signIn' %} class="btn-login">Login</a>
         </div>
     </header>
     <main class="container">
+        {% if messages %}
+        <div id="messages" class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% block content %}{% endblock %}
     </main>
+    <script src="{% static 'fields/js/base.js' %}"></script>
     {% block javascript %}{% endblock %}
 </body>
 </html>

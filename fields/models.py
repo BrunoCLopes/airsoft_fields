@@ -1,18 +1,9 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
 '''
--- Table for Organizers of Fields
-CREATE TABLE Organizers (
-    organizer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    approved INTEGER DEFAULT 0, -- 0: not approved, 1: approved
-    registration_date TEXT DEFAULT CURRENT_TIMESTAMP
-);
-
 -- Table for Airsoft Fields
 CREATE TABLE Fields (
     field_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,20 +31,6 @@ CREATE TABLE FieldPhotos (
 );
 '''
 
-class Organizer(models.Model):
-    username = models.CharField(max_length=150, unique=True, verbose_name="Nome de usuário")
-    email = models.EmailField(unique=True, verbose_name="Email")
-    password_hash = models.CharField(max_length=255, verbose_name="Hash da senha")
-    approved = models.BooleanField(default=False, verbose_name="Aprovado")
-    registration_date = models.DateTimeField(auto_now_add=True, verbose_name="Data de registro")
-    
-    def __str__(self):
-        return self.username
-    
-    class Meta:
-        verbose_name = "Organizador"
-        verbose_name_plural = "Organizadores"
-
 class Field(models.Model):
 
     FIELD_TYPE_CHOICES = [
@@ -72,7 +49,7 @@ class Field(models.Model):
     description = models.TextField(blank=True, null=True, verbose_name="Descrição")
     operating_hours = models.TextField(verbose_name="Horário de funcionamento")
     visible = models.BooleanField(default=True, verbose_name="Visível")
-    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, verbose_name="Organizador")
+    organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Organizador")
     
     def __str__(self):
         return self.field_name
