@@ -1,4 +1,5 @@
 :root {
+    --light-gray: #f7f7f7;
     --bg-color: #ffffff;
     --header-bg: #ffffff;
     --white: #ffffff;
@@ -18,7 +19,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+    background-color: var(--light-gray);
     color: var(--text-color);
 }
 

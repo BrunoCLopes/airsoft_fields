@@ -3,22 +3,30 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
 {% endblock %}
-{% block header %}
-Cadastro para Organizadores
-{% endblock header %}
+{% block title %}
+Cadastro
+{% endblock %}
 {% block content %}
 <form id="signUp-form" action="{% url 'signUp' %}" method="POST">{% csrf_token %}
+    <div class="form-title-container">
+        <h2 class="form-title">
+            Cadastro para Organizadores
+        </h2>
+    </div>
     <div class="form-group">
         <label for="signUp-username">Nome de usuário</label>
-        <input placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text" required>
+        <input placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text">
+        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
     </div>
     <div class="form-group">
         <label for="signUp-email">Email</label>
-        <input placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email" required>
+        <input placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email">
+        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
     </div>
     <div class="form-group">
         <label for="signUp-password">Senha</label>
-        <input placeholder="Digite uma senha" id="signUp-password" name="signUp-password" type="password" required>
+        <input placeholder="Digite uma senha" id="signUp-password" name="signUp-password" type="password">
+        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
     </div>
     <div class="btn-container">
         <button class="btn-submit" type="submit">Enviar</button>

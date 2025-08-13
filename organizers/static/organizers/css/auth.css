@@ -1,3 +1,12 @@
+.form-title-container{
+    display: flex;
+    justify-content: center;
+}
+
+.form-title{
+    font-weight: 500;
+}
+
 form input{
     font-family: 'Poppins';
     padding: 0.75rem;
@@ -19,6 +28,9 @@ form label{
 }
 
 form {
+    border-radius: 15px;
+    background-color: var(--white);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     gap:1.5rem;

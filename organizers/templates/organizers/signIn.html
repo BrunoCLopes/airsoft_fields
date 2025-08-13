@@ -3,11 +3,16 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
 {% endblock %}
-{% block header %}
-Login para Organizadores
-{% endblock header %}
+{% block title %}
+Login
+{% endblock %}
 {% block content %}
 <form id="signIn-form" action="{% url 'signIn' %}" method="GET">
+    <div class="form-title-container">
+        <h2 class="form-title">
+            Login para Organizadores
+        </h2>
+    </div>
     <div class="form-group">
         <label for="signIn-email">Email</label>
         <input placeholder="exemplo@email.com" id="signIn-email" name="signIn-email" type="email" required>
