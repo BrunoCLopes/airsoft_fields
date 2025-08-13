@@ -1,6 +1,6 @@
 :root {
-    --light-gray: #f7f7f7;
-    --bg-color: #ffffff;
+    --red-alert: #D5041A;
+    --bg-color: #f7f7f7;
     --header-bg: #ffffff;
     --white: #ffffff;
     --container-bg: #333;
@@ -19,7 +19,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--light-gray);
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
 

@@ -11,21 +11,27 @@ def signUp(request):
         password = request.POST.get('signUp-password')
 
         try:
+            errors = {}
+
             if not username:
-                messages.error(request, 'Campo é obrigatório.')
-                return redirect('signUp')
+                errors['required_username'] = 'Nome de usuário é obrigatório.'
             
             if not email:
-                messages.error(request, 'Campo é obrigatório.')
-                return redirect('signUp')
+                errors['required_email'] = 'E-mail é obrigatório.'
             
             if not password:
-                messages.error(request, 'Campo é obrigatório.')
-                return redirect('signUp')
+                errors['required_password'] = 'Senha é obrigatória.'
+
+            if errors != {}:
+                return render(request, 'organizers/signUp.html', {
+                    'errors' : errors,
+                    'username' : username,
+                    'email' : email
+                    })
         except:
             return
 
-        Organizer.objects.create_user(username, email, password)
+        # Organizer.objects.create_user(username, email, password)
         messages.success(request, 'Sucesso! Aguarde a aprovação do seu cadastro por nossa equipe.')
         return redirect('index')
 

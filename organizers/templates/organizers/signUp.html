@@ -15,21 +15,27 @@ Cadastro
     </div>
     <div class="form-group">
         <label for="signUp-username">Nome de usuário</label>
-        <input placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text">
-        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
+        <input placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text" value="{{ username|default:'' }}">
+        {% if errors.required_username %}
+        <span class="error">{{ errors.required_username }}</span>
+        {% endif %}
     </div>
     <div class="form-group">
-        <label for="signUp-email">Email</label>
-        <input placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email">
-        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
+        <label for="signUp-email">E-mail</label>
+        <input placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email" value="{{ email|default:'' }}">
+        {% if errors.required_email %}
+        <span class="error">{{ errors.required_email }}</span>
+        {% endif %}
     </div>
     <div class="form-group">
         <label for="signUp-password">Senha</label>
         <input placeholder="Digite uma senha" id="signUp-password" name="signUp-password" type="password">
-        {% if messages %}{% for message in messages %}<span>{{ message }}</span>{% endfor %}{% endif %}
+        {% if errors.required_password %}
+        <span class="error">{{ errors.required_password }}</span>
+        {% endif %}
     </div>
     <div class="btn-container">
-        <button class="btn-submit" type="submit">Enviar</button>
+        <button id="signUp-btn" class="btn-submit" type="submit">Enviar</button>
     </div>
     <div class="bottom-container">
         Já possui uma conta?<a class="link" href="{% url 'signIn' %}">Entrar</a>

@@ -28,13 +28,27 @@ form label{
 }
 
 form {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background-color: var(--white);
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap:1.5rem;
+    gap:1.75rem;
     width: 45%;
+}
+
+.form-group{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.error{
+    top: 100%;
+    color: var(--red-alert);
+    font-weight: 500;
+    position: absolute;
 }
 
 .btn-container{
