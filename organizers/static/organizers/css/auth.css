@@ -17,6 +17,10 @@ form input{
     box-sizing: border-box;
 }
 
+form input.border-error{
+    border: 2px solid var(--red-alert);
+}
+
 form input::placeholder {
     color: var(--placeholder-color);
 }

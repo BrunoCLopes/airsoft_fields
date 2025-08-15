@@ -15,21 +15,21 @@ Cadastro
     </div>
     <div class="form-group">
         <label for="signUp-username">Nome de usuário</label>
-        <input placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text" value="{{ username|default:'' }}">
+        <input {% if errors.required_username %} class="border-error" {% endif %} placeholder="Ex.: João Silva" id="signUp-username" name="signUp-username" type="text" value="{{ username|default:'' }}">
         {% if errors.required_username %}
         <span class="error">{{ errors.required_username }}</span>
         {% endif %}
     </div>
     <div class="form-group">
         <label for="signUp-email">E-mail</label>
-        <input placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email" value="{{ email|default:'' }}">
+        <input {% if errors.required_email %} class="border-error" {% endif %}placeholder="exemplo@email.com" id="signUp-email" name="signUp-email" type="email" value="{{ email|default:'' }}">
         {% if errors.required_email %}
         <span class="error">{{ errors.required_email }}</span>
         {% endif %}
     </div>
     <div class="form-group">
         <label for="signUp-password">Senha</label>
-        <input placeholder="Digite uma senha" id="signUp-password" name="signUp-password" type="password">
+        <input {% if errors.required_password %} class="border-error" {% endif %} placeholder="Digite uma senha" id="signUp-password" name="signUp-password" type="password">
         {% if errors.required_password %}
         <span class="error">{{ errors.required_password }}</span>
         {% endif %}
