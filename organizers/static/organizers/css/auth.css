@@ -38,8 +38,8 @@ form {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap:1.75rem;
-    width: 45%;
+    gap: 1.75rem;
+    width: 25rem;
 }
 
 .form-group{
@@ -51,7 +51,6 @@ form {
 .error{
     top: 100%;
     color: var(--red-alert);
-    font-weight: 500;
     position: absolute;
 }
 

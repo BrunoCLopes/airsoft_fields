@@ -7,19 +7,25 @@
 Login
 {% endblock %}
 {% block content %}
-<form id="signIn-form" action="{% url 'signIn' %}" method="GET">
+<form id="signIn-form" action="{% url 'signIn' %}" method="POST">{% csrf_token %}
     <div class="form-title-container">
         <h2 class="form-title">
             Login para Organizadores
         </h2>
     </div>
     <div class="form-group">
-        <label for="signIn-email">E-mail</label>
-        <input placeholder="exemplo@email.com" id="signIn-email" name="signIn-email" type="email" required>
+        <label for="signIn-username">Nome de usuário</label>
+        <input placeholder="Ex.: João Silva" id="signIn-username" name="signIn-username" {% if errors.required_username %} class="border-error" {% endif %} type="text" value="{{ username|default:'' }}">
+        {% if errors.required_username %}
+        <span class="error">{{ errors.required_username }}</span>
+        {% endif %}
     </div>
     <div class="form-group">
         <label for="signIn-password">Senha</label>
-        <input placeholder="Digite sua senha" id="signIn-password" type="password" name="signIn-password" required>
+        <input placeholder="Digite sua senha" id="signIn-password" name="signIn-password" {% if errors.required_password %} class="border-error" {% endif %} type="password">
+        {% if errors.required_password %}
+        <span class="error">{{ errors.required_password }}</span>
+        {% endif %}
     </div>
     <div class="btn-container">
         <button id="signIn-btn" class="btn-submit" type="submit">Entrar</button>
