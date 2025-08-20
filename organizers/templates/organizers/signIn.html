@@ -1,4 +1,4 @@
-{% extends 'organizers/base.html' %}
+{% extends 'organizers/auth_base.html' %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
@@ -29,6 +29,7 @@ Login
     </div>
     <div class="btn-container">
         <button id="signIn-btn" class="btn-submit" type="submit">Entrar</button>
+        {% if user_not_found %}<span class="error">{{ user_not_found }}</span>{% endif %}
     </div>
     <div class="bottom-container">
         Não possui uma conta?<a class="link" href="{% url 'signUp' %}">Cadastre-se</a>

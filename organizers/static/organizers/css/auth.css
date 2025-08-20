@@ -49,6 +49,7 @@ form {
 }
 
 .error{
+    font-weight: 500;
     top: 100%;
     color: var(--red-alert);
     position: absolute;
@@ -58,6 +59,8 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
 }
 
 .btn-submit{

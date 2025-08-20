@@ -37,7 +37,7 @@ def signUp(request):
             return redirect('index')
         
         except Exception:
-            messages.error(request, 'Erro ao criar a conta.')
+            messages.error(request, 'Erro ao criar a conta, tente novamente mais tarde.')
             return redirect('index')
 
 def signIn(request):
@@ -63,13 +63,13 @@ def signIn(request):
             organizer = authenticate(request, username=username, password=password)
             if organizer is not None:
                 login(request, organizer)
-                return redirect('index')
+                return redirect('panel')
             else:
-                return redirect('signIn')
+                return render(request, 'organizers/signIn.html', {'user_not_found':'Nome de usuário ou senha incorretos.'})
         except Exception:
-            messages.error(request, 'Erro ao fazer login.')
+            messages.error(request, 'Erro ao fazer login, tente novamente mais tarde.')
             return redirect('index')
 
 @login_required()
 def organizer_area(request):
-    return render(request, "organizers/organizer_area.html")
+    return render(request, "organizers/organizer_area_base.html")
