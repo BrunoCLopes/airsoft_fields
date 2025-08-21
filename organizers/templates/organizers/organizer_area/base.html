@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'organizers/css/organizer_area_base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Área do Organizador</title>
+</head>
+<body>
+    <main class="container">
+        <div class="sidebar">
+            <div class="container-profile">
+                Olá, <span class="organizer-name">{{ user.first_name }}</span>
+            </div>
+            <nav>
+                <a href="{% url 'my_fields' %}" class="{% if request.resolver_match.url_name == 'my_fields' %}active{% endif %}"><i class="fa-solid fa-globe"></i> Meus Campos</a>
+                <a href="{% url 'new_field' %}" class="{% if request.resolver_match.url_name == 'new_field' %}active{% endif %}"><i class="fa-solid fa-person-rifle"></i> Novo Campo</a>
+                <a href="{% url 'my_profile' %}" class="{% if request.resolver_match.url_name == 'my_profile' %}active{% endif %}"><i class="fa-solid fa-circle-user"></i> Meu Perfil</a>
+            </nav>
+        </div>
+        <div class="content">
+
+        </div>
+    </main>
+</body>
+</html>

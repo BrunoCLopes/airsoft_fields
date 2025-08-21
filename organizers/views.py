@@ -7,31 +7,17 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def signUp(request):
     if request.method == 'GET':
-        return render(request, 'organizers/signUp.html')
+        return render(request, 'organizers/auth/signUp.html')
     else:
         username = request.POST.get('signUp-username')
         email = request.POST.get('signUp-email')
         password = request.POST.get('signUp-password')
+        first_name = request.POST.get('signUp-first-name')
 
         try:
-            errors = {}
-
-            if not username:
-                errors['required_username'] = 'Nome de usuário é obrigatório.'
-            
-            if not email:
-                errors['required_email'] = 'E-mail é obrigatório.'
-            
-            if not password:
-                errors['required_password'] = 'Senha é obrigatória.'
-
-            if errors != {}:
-                return render(request, 'organizers/signUp.html', {
-                    'errors' : errors,
-                    'username' : username,
-                    'email' : email
-                    })
-            Organizer.objects.create_user(username=username, email=email, password=password)
+            user = Organizer.objects.create_user(username=username, first_name=first_name, email=email, password=password)
+            user.is_active = False
+            user.save()
 
             messages.success(request, 'Sucesso! Aguarde a aprovação do seu cadastro por nossa equipe.')
             return redirect('index')
@@ -42,34 +28,30 @@ def signUp(request):
 
 def signIn(request):
     if request.method == "GET":
-        return render(request, 'organizers/signIn.html')
+        return render(request, 'organizers/auth/signIn.html')
     else:
         try:
-            errors = {}
             username = request.POST.get('signIn-username')
             password = request.POST.get('signIn-password')
-
-            if not username:
-                errors['required_username'] = 'Nome de usuário é obrigatório.'
-            if not password:
-                errors['required_password'] = 'Senha é obrigatória.'
-
-            if errors != {}:
-                return render(request, 'organizers/signIn.html', {
-                    'errors' : errors,
-                    'username' : username,
-                    })
 
             organizer = authenticate(request, username=username, password=password)
             if organizer is not None:
                 login(request, organizer)
-                return redirect('panel')
+                return redirect('my_fields')
             else:
-                return render(request, 'organizers/signIn.html', {'user_not_found':'Nome de usuário ou senha incorretos.'})
+                return render(request, 'organizers/auth/signIn.html', {'user_not_found':'Nome de usuário ou senha incorretos.'})
         except Exception:
             messages.error(request, 'Erro ao fazer login, tente novamente mais tarde.')
             return redirect('index')
 
 @login_required()
-def organizer_area(request):
-    return render(request, "organizers/organizer_area_base.html")
+def my_fields(request):
+    return render(request, "organizers/organizer_area/my_fields.html")
+
+@login_required()
+def new_field(request):
+    return render(request, 'organizers/organizer_area/new_field.html')
+
+@login_required()
+def my_profile(request):
+    return render(request, 'organizers/organizer_area/my_profile.html')

@@ -1,4 +1,4 @@
-{% extends 'organizers/auth_base.html' %}
+{% extends 'organizers/auth/base.html' %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
@@ -14,18 +14,12 @@ Login
         </h2>
     </div>
     <div class="form-group">
-        <label for="signIn-username">Nome de usuário</label>
-        <input placeholder="Ex.: João Silva" id="signIn-username" name="signIn-username" {% if errors.required_username %} class="border-error" {% endif %} type="text" value="{{ username|default:'' }}">
-        {% if errors.required_username %}
-        <span class="error">{{ errors.required_username }}</span>
-        {% endif %}
+        <label for="nome de usuário">Nome de usuário</label>
+        <input placeholder="Ex.: João Silva" id="nome de usuário" name="signIn-username" type="text">
     </div>
     <div class="form-group">
-        <label for="signIn-password">Senha</label>
-        <input placeholder="Digite sua senha" id="signIn-password" name="signIn-password" {% if errors.required_password %} class="border-error" {% endif %} type="password">
-        {% if errors.required_password %}
-        <span class="error">{{ errors.required_password }}</span>
-        {% endif %}
+        <label for="senha">Senha</label>
+        <input placeholder="Digite sua senha" id="senha" name="signIn-password" type="password">
     </div>
     <div class="btn-container">
         <button id="signIn-btn" class="btn-submit" type="submit">Entrar</button>

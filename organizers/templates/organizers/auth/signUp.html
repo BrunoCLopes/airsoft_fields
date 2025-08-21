@@ -1,0 +1,39 @@
+{% extends 'organizers/auth/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
+{% endblock %}
+{% block title %}
+Cadastro
+{% endblock %}
+{% block content %}
+<form id="signUp-form" action="{% url 'signUp' %}" method="POST">{% csrf_token %}
+    <div class="form-title-container">
+        <h2 class="form-title">
+            Cadastro para Organizadores
+        </h2>
+    </div>
+    <div class="form-group">
+        <label for="nome de usuário">Nome de usuário</label>
+        <input  placeholder="Ex.: usuário123" id="nome de usuário" name="signUp-username" type="text">
+    </div>
+    <div class="form-group">
+        <label for="primeiro nome">Primeiro nome</label>
+        <input  placeholder="Ex.: João" id="primeiro nome" name="signUp-first-name" type="text">
+    </div>
+    <div class="form-group">
+        <label for="e-mail">E-mail</label>
+        <input placeholder="exemplo@email.com" id="e-mail" name="signUp-email" type="email">
+    </div>
+    <div class="form-group">
+        <label for="senha">Senha</label>
+        <input placeholder="Digite uma senha" id="senha" name="signUp-password" type="password">
+    </div>
+    <div class="btn-container">
+        <button id="signUp-btn" class="btn-submit" type="submit">Enviar</button>
+    </div>
+    <div class="bottom-container">
+        Já possui uma conta?<a class="link" href="{% url 'signIn' %}">Entrar</a>
+    </div>
+</form>
+{% endblock %}
