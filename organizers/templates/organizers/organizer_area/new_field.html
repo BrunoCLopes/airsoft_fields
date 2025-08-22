@@ -1,1 +1,46 @@
 {% extends "organizers/organizer_area/base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'organizers/css/organizer_area/new_field.css' %}">
+{% endblock %}
+{% block content %}
+<h1 class="form-title">Registre seu Campo!</h1>
+<form class="form-container">
+    <div class="grid-container col-span-2">
+        <label for="nome do campo">Nome do Campo</label>
+        <input class="text-input" type="text" name="" id="nome do campo">
+    </div>
+    <div class="grid-container type-container">
+        <label for="tipo de campo">Tipo de Campo</label>
+        <select name="" id="tipo de campo"></select>
+    </div>
+    <div class="grid-container col-span-2">
+        <label for="endereço">Endereço</label>
+        <input class="text-input" type="text" name="" id="endereço">
+    </div>
+    <div class="grid-container">
+        <label for="telefone">Telefone</label>
+        <input class="text-input" type="text" name="" id="telefone">
+    </div>
+    <div class="grid-container">
+        <label for="estado">Estado</label>
+        <select name="" id="estado"></select>
+    </div>
+    <div class="grid-container">
+        <label for="cidade">Cidade</label>
+        <select name="" id="cidade"></select>
+    </div>
+    <div class="grid-container">
+        <label for="horário de funcionamento">Horário de Funcionamento</label>
+        <input class="text-input" type="text" name="" id="horário de funcionamento">
+    </div>
+    <div class="grid-container col-span-2 row-span-2">
+        <label for="descrição">Descrição</label>
+        <textarea class="textarea" name="" id="descrição"></textarea>
+    </div>
+    <div class="grid-container row-span-2">
+        <label for="fotos do campo">Fotos do Campo</label>
+        <input type="file" name="" id="fotos do campo">
+    </div>
+</form>
+{% endblock %}

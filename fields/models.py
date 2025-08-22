@@ -12,7 +12,6 @@ CREATE TABLE Fields (
     state TEXT NOT NULL,
     city TEXT NOT NULL,
     phone TEXT,
-    social_media TEXT, -- Can be JSON: '{"instagram": "...", "facebook": "...", "whatsapp": "..."}'
     description TEXT,
     operating_hours TEXT,
     visible INTEGER DEFAULT 1, -- 0: inactive, 1: active
@@ -45,7 +44,6 @@ class Field(models.Model):
     state = models.CharField(max_length=100, verbose_name="Estado")
     city = models.CharField(max_length=100, verbose_name="Cidade")
     phone = models.CharField(max_length=20, verbose_name="Telefone")
-    social_media = models.JSONField(default=dict, blank=True, null=True, verbose_name="Redes sociais")
     description = models.TextField(blank=True, null=True, verbose_name="Descrição")
     operating_hours = models.TextField(verbose_name="Horário de funcionamento")
     visible = models.BooleanField(default=True, verbose_name="Visível")

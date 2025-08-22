@@ -1,13 +1,14 @@
 {% extends 'organizers/auth/base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'organizers/css/auth.css' %}">
+<link rel="stylesheet" href="{% static 'organizers/css/auth/auth.css' %}">
 {% endblock %}
 {% block title %}
 Cadastro
 {% endblock %}
 {% block content %}
-<form id="signUp-form" action="{% url 'signUp' %}" method="POST">{% csrf_token %}
+<form id="signUp-form" action="{% url 'signUp' %}" method="POST">
+    {% csrf_token %}
     <div class="form-title-container">
         <h2 class="form-title">
             Cadastro para Organizadores

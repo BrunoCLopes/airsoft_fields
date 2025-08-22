@@ -12,13 +12,21 @@
     --hover-blue-color: #1f7aaf;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body {  
     align-items: center;
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+
+main{
+    display: flex;
+    flex-direction: row;
 }
 
 .sidebar{
@@ -75,4 +83,12 @@ nav a.active{
 nav a:hover{
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+.content{
+    margin-top: 4rem;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }

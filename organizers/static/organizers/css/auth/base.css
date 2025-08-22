@@ -12,13 +12,16 @@
     --hover-blue-color: #1f7aaf;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body {
     flex-direction: column;
     display: flex;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
 }
