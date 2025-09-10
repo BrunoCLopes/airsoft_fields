@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[name="container-search-select"]').forEach(selectSetup);
+    document.querySelectorAll('[name="container-select"]').forEach(selectSetup);
     const stateSuggestions = document.getElementById('state-suggestions');
     const citySuggestions = document.getElementById('city-suggestions');
+    const fieldTypeOptions = document.getElementById('field-type-options');
     const stateField = document.getElementById('filter-state');
     const cityField = document.getElementById('filter-city');
+    const typeField = document.getElementById('field-type');
 
     let states = [];
     let cities = [];
+    const fieldTypes = ['Todos', 'CQB', 'Mata', 'Misto'];
 
     function optionSelected(options_container, field, option){
         field.value = option;
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         states.forEach(state=>{
             const div = document.createElement('div');
             div.textContent = state.nome;
-            div.classList.add('autocomplete-suggestion');
+            div.classList.add('option');
             div.addEventListener('click', () => {
                 const stateId = state.id;
                 optionSelected(stateSuggestions, stateField, state.nome);
@@ -33,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stateSuggestions.appendChild(div);
         });
         } catch (error) {
-        console.error("Erro ao buscar estados:", error);
+            console.error("Erro ao buscar estados:", error);
         }
     }
 
@@ -46,10 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cities.forEach(city=>{
                 const div = document.createElement('div');
                 div.textContent = city;
-                div.classList.add('autocomplete-suggestion');
+                div.classList.add('option');
                 div.addEventListener('click', () => {
                     optionSelected(citySuggestions, cityField, city);
-
                 });
                 citySuggestions.appendChild(div);
             });
@@ -58,12 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function createSelectOptions(options_container, options, field){
+        options.forEach(option=>{
+            const div = document.createElement('div');
+            div.textContent = option;
+            div.classList.add('option');
+            div.addEventListener('click', () => {
+                field.value = option;
+                options_container.style.display = "none";
+                options_container.classList.remove('open');
+            });
+            options_container.appendChild(div);
+        });
+    }
+
     function selectSetup(container){
-        const trigger = container.querySelector('[name="trigger-search-select"]');
-        const options = container.querySelector('[name="options-search-select"]');
+        const trigger = container.querySelector('[name="trigger-select"]');
+        const options = container.querySelector('[name="options-select"]');
 
         function open(){
-            document.querySelectorAll('[name="options-search-select"]').forEach(option=>{
+            document.querySelectorAll('[name="options-select"]').forEach(option=>{
                 option.style.display = 'none';
                 option.classList.remove('open');
             });
@@ -83,4 +99,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadStates();
+    createSelectOptions(fieldTypeOptions, fieldTypes, typeField);
 });

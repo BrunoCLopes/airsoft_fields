@@ -82,6 +82,7 @@
 
 .options {
     top: 100%;
+    width: 100%;
     margin-top: 0.25rem;
     display: none;
     border: 1px solid #ccc;

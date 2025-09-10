@@ -9,35 +9,30 @@
         <label for="field-name">Nome do Campo</label>
         <input type="text" id="field-name" placeholder="Digite o nome">
     </div>
-    <div name="container-search-select" class="filter-group">
+    <div name="container-select" class="filter-group">
         <label for="state">Estado</label>
-        <input  name="trigger-search-select" type="text" id="filter-state" class="input readonly-field" readonly
+        <input  name="trigger-select" type="text" id="filter-state" class="input readonly-field" readonly
             placeholder="Selecione">
-        <div name="options-search-select" class="search-state-container" id="search-state-container">
+        <div name="options-select" class="search-state-container" id="search-state-container">
             <input type="text" id="search-state" class="search-input" placeholder="Digite o Estado..."
                 autocomplete="off">
             <div id="state-suggestions" class="autocomplete-suggestions"></div>
         </div>
     </div>
-    <div name="container-search-select" class="filter-group">
+    <div name="container-select" class="filter-group">
         <label for="city">Cidade</label>
-        <input name="trigger-search-select" type="text" id="filter-city" class="input readonly-field" readonly placeholder="Selecione" disabled>
-        <div name="options-search-select" class="search-city-container" id="search-city-container">
+        <input name="trigger-select" type="text" id="filter-city" class="input readonly-field" readonly placeholder="Selecione" disabled>
+        <div name="options-select" class="search-city-container" id="search-city-container">
             <input type="text" id="search-city" class="search-input" placeholder="Digite a cidade..."
                 autocomplete="off">
             <div id="city-suggestions" class="autocomplete-suggestions"></div>
         </div>
     </div>
-    <div class="filter-group">
+    <div name="container-select" class="filter-group">
         <label for="field-type">Tipo de Campo</label>
-        <input type="text" id="field-type" class="input readonly-field" readonly
+        <input name="trigger-select" type="text" id="field-type" class="input readonly-field" readonly
             placeholder="Selecione">
-        <div id="field-type-options" class="options">
-            <div class="type-option option">Todos</div>
-            <div class="type-option option">CQB</div>
-            <div class="type-option option">Mata</div>
-            <div class="type-option option">Misto</div>
-        </div>
+        <div name="options-select" id="field-type-options" class="options"></div>
     </div>
     <button id="search-button-filter" class="btn-search">
         <i class="fa-solid fa-magnifying-glass"></i>
