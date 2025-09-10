@@ -9,21 +9,20 @@
         <label for="field-name">Nome do Campo</label>
         <input type="text" id="field-name" placeholder="Digite o nome">
     </div>
-    <div class="filter-group">
+    <div name="container-search-select" class="filter-group">
         <label for="state">Estado</label>
-        <input type="text" id="filter-state" class="input readonly-field" readonly
+        <input  name="trigger-search-select" type="text" id="filter-state" class="input readonly-field" readonly
             placeholder="Selecione">
-        <div class="search-state-container" id="search-state-container">
+        <div name="options-search-select" class="search-state-container" id="search-state-container">
             <input type="text" id="search-state" class="search-input" placeholder="Digite o Estado..."
                 autocomplete="off">
             <div id="state-suggestions" class="autocomplete-suggestions"></div>
         </div>
     </div>
-    <div class="filter-group">
+    <div name="container-search-select" class="filter-group">
         <label for="city">Cidade</label>
-        <input type="text" id="filter-city" class="input readonly-field" readonly
-            placeholder="Selecione" disabled>
-        <div class="search-city-container" id="search-city-container">
+        <input name="trigger-search-select" type="text" id="filter-city" class="input readonly-field" readonly placeholder="Selecione" disabled>
+        <div name="options-search-select" class="search-city-container" id="search-city-container">
             <input type="text" id="search-city" class="search-input" placeholder="Digite a cidade..."
                 autocomplete="off">
             <div id="city-suggestions" class="autocomplete-suggestions"></div>
@@ -56,7 +55,6 @@
     </div>
 </div>
 {% endblock content %}
-
 {% block javascript %}
-<script src="{% static 'fields/js/index.js' %}"></script>
+<script src="{% static 'js/common_functions.js' %}"></script>
 {% endblock %}
