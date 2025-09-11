@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stateField.addEventListener('change', () => {
         console.log('aa');
-    })
+    });
 
     async function loadStates() {
         try {
