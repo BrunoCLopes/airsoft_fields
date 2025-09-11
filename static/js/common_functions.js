@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let states = [];
     let cities = [];
-    const fieldTypes = ['Todos', 'CQB', 'Mata', 'Misto'];
+    const fieldTypes = ['CQB', 'Mata', 'Misto'];
 
     function optionSelected(options_container, field, option){
         field.value = option;
@@ -18,23 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
         parent.style.display = 'none';
     }
 
+    stateField.addEventListener('change', () => {
+        console.log('aa');
+    })
+
     async function loadStates() {
         try {
-        const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome');
-        const data = await response.json();
-        states = data.map(state => ({ id: state.id, nome: state.nome }));
-        states.forEach(state=>{
-            const div = document.createElement('div');
-            div.textContent = state.nome;
-            div.classList.add('option');
-            div.addEventListener('click', () => {
-                const stateId = state.id;
-                optionSelected(stateSuggestions, stateField, state.nome);
-                loadCities(stateId);
-                cityField.disabled = false;
+            const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome');
+            const data = await response.json();
+            states = data.map(state => ({ id: state.id, nome: state.nome }));
+            states.forEach(state=>{
+                const div = document.createElement('div');
+                div.textContent = state.nome;
+                div.classList.add('option');
+                div.addEventListener('click', () => {
+                    const stateId = state.id;
+                    optionSelected(stateSuggestions, stateField, state.nome);
+                    loadCities(stateId);
+                    cityField.disabled = false;
+                });
+                stateSuggestions.appendChild(div);
             });
-            stateSuggestions.appendChild(div);
-        });
         } catch (error) {
             console.error("Erro ao buscar estados:", error);
         }
@@ -75,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function selectSetup(container){
-        const trigger = container.querySelector('[name="trigger-select"]');
-        const options = container.querySelector('[name="options-select"]');
+        const trigger = container.querySelector('input[name="trigger-select"]');
+        const options = container.querySelector('div[name="options-select"]');
 
         function open(){
             document.querySelectorAll('[name="options-select"]').forEach(option=>{

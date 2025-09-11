@@ -36,6 +36,26 @@
     box-sizing: border-box;
 }
 
+.container-input{
+    display: flex;
+    align-items: center;
+}
+
+.clear-input-button{
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 100%;
+}
+
+.clear-input-button:hover{
+    cursor: pointer;
+    background-color: var(--light-gray);
+}
+
 .applied-filters-container {
     min-height: 2rem;
     display: flex;
