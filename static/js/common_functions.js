@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[name="container-select"]').forEach(selectSetup);
-    const stateSuggestions = document.getElementById('state-suggestions');
-    const citySuggestions = document.getElementById('city-suggestions');
+    const stateSuggestions = document.getElementById('state-options');
+    const citySuggestions = document.getElementById('city-options');
     const fieldTypeOptions = document.getElementById('field-type-options');
     const stateField = document.getElementById('filter-state');
     const cityField = document.getElementById('filter-city');
     const typeField = document.getElementById('field-type');
-
+    const messages = document.getElementById('messages');
+    
     let states = [];
     let cities = [];
     const fieldTypes = ['CQB', 'Mata', 'Misto'];
@@ -17,10 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         parent.classList.remove('open');
         parent.style.display = 'none';
     }
-
-    stateField.addEventListener('change', () => {
-        console.log('aa');
-    });
 
     async function loadStates() {
         try {
@@ -34,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 div.addEventListener('click', () => {
                     const stateId = state.id;
                     optionSelected(stateSuggestions, stateField, state.nome);
+                    cityField.value = "";
                     loadCities(stateId);
                     cityField.disabled = false;
                 });
@@ -104,4 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadStates();
     createSelectOptions(fieldTypeOptions, fieldTypes, typeField);
+
+    if (messages) {
+        setTimeout(() => {
+            messages.style.opacity = '0';
+            setTimeout(() => messages.remove(), 500);
+        }, 3000);
+    }
 });

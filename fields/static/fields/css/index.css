@@ -14,26 +14,9 @@
 
 .filter-group {
     display: flex;
-    position: relative;
     flex-direction: column;
     flex: 1;
     min-width: 150px;
-}
-
-.filter-group label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.filter-bar input {
-    font-family: 'Poppins';
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .container-input{
@@ -80,66 +63,6 @@
 
 .applied-filter:hover{
     opacity: 75%;
-}
-
-.field-type option:hover{
-    background-color: var(--primary-color);
-}
-
-.filter-bar input::placeholder {
-    color: var(--placeholder-color);
-}
-
-.autocomplete-suggestions {
-    border: 1px solid #ccc;
-    width: 100%;
-    max-height: 12rem;
-    overflow-y: auto;
-    position: absolute;
-    background-color: var(--white);
-    z-index: 9999;
-}
-
-.options {
-    top: 100%;
-    width: 100%;
-    margin-top: 0.25rem;
-    display: none;
-    border: 1px solid #ccc;
-    max-height: 12rem;
-    overflow-y: auto;
-    position: absolute;
-    background-color: var(--white);
-    z-index: 9999;
-}
-
-.autocomplete-suggestion, .option {
-    padding: 8px;
-}
-
-.autocomplete-suggestion:hover,
-.option:hover{
-    color: var(--white);
-    background-color: var(--primary-color);
-    cursor: default;
-}
-
-.search-state-container,
-.search-city-container{
-    padding-top: 0.25rem;
-    position: absolute;
-    top: 100%;
-    display: none;
-}
-
-.search-state-container.visible,
-.search-city-container.visible,
-.options.visible{
-    display: block;
-}
-
-.readonly-field {
-    cursor: default;
 }
 
 .btn-search {

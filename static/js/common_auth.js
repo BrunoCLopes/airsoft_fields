@@ -3,37 +3,37 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
     
-    if(!validate_forms(form)){
+    if(!validateForms(form)){
         return;
     }
     form.submit();
 });
 
-function validate_forms(form){
-    const inputs = form.querySelectorAll('input');
+function validateForms(form){
+    const inputs = form.querySelectorAll('input, textarea');
     let isValid = true;
 
     inputs.forEach(input => {
-        clear_errors(input);
+        clearErrors(input);
 
          if (input.value.trim() == ""){
-            set_error(input);
+            setError(input);
             isValid = false;
         }
     });
     return isValid;
 }
 
-function set_error(input){
-    console.log('CAMPO VAZIO');
+function setError(input){
+    const label = input.parentElement.querySelector('label');
     input.classList.add('border-error');
     let span = document.createElement('span');
     span.classList.add('error');
-    span.textContent = `O campo ${input.getAttribute('id')} é obrigatório.`
+    span.textContent = `O campo ${label.textContent} é obrigatório.`;
     input.parentElement.appendChild(span);
 }
 
-function clear_errors(input){
+function clearErrors(input){
     input.classList.remove('border-error');
     const span = input.parentElement.querySelector('span');
     if(span) span.remove()
