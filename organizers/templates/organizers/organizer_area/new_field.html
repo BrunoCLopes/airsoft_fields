@@ -7,8 +7,8 @@
 <h1 class="form-title">Registre seu Campo!</h1>
 <form class="form-container">
     <div class="grid-container col-span-2">
-        <label for="nome do campo">Nome do Campo</label>
-        <input class="text-input" type="text" name="" id="nome do campo">
+        <label for="field-name">Nome do Campo</label>
+        <input placeholder="Informe o nome do campo" class="text-input" type="text" name="" id="field-name">
     </div>
     <div class="grid-container type-container">
         <div name="container-select" class="container-select">
@@ -21,12 +21,12 @@
         </div>
     </div>
     <div class="grid-container col-span-2">
-        <label for="endereço">Endereço</label>
-        <input class="text-input" type="text" name="" id="endereço">
+        <label for="field-addres">Endereço</label>
+        <input placeholder="Informe o endereço do campo" class="text-input" type="text" name="" id="field-addres">
     </div>
     <div class="grid-container">
-        <label for="telefone">Telefone</label>
-        <input class="text-input" type="text" name="" id="telefone">
+        <label for="field-phone">Telefone</label>
+        <input placeholder="+55 (XX) XXXXX-XXXX" class="text-input" type="text" name="" id="field-phone">
     </div>
     <div class="grid-container">
         <div name="container-select" class="container-select">
@@ -57,16 +57,16 @@
         </div>
     </div>
     <div class="grid-container">
-        <label for="horário de funcionamento">Horário de Funcionamento</label>
-        <input class="text-input" type="text" name="" id="horário de funcionamento">
+        <label for="operating_hours">Horário de Funcionamento</label>
+        <input placeholder="Ex.: sab-dom" class="text-input" type="text" id="operating_hours">
     </div>
     <div class="grid-container col-span-2 row-span-2">
-        <label for="descrição">Descrição</label>
-        <textarea name="" id="descrição"></textarea>
+        <label for="description">Descrição</label>
+        <textarea id="description"></textarea>
     </div>
-    <div class="grid-container row-span-2">
-        <label for="fotos do campo">Fotos do Campo</label>
-        <input class="field-image" type="image" name="" id="fotos do campo">
+    <div class="image-container grid-container row-span-2">
+        <label for="field-photos">Fotos do Campo</label>
+        <input class="field-image" type="file" id="field-photos">
     </div>
 </form>
 {% endblock %}
