@@ -44,14 +44,14 @@ def signIn(request):
             messages.error(request, 'Erro ao fazer login, tente novamente mais tarde.')
             return redirect('index')
 
-@login_required()
+# @login_required()
 def my_fields(request):
     return render(request, "organizers/organizer_area/my_fields.html")
 
-@login_required()
+# @login_required()
 def new_field(request):
     return render(request, 'organizers/organizer_area/new_field.html')
 
-@login_required()
+# @login_required()
 def my_profile(request):
     return render(request, 'organizers/organizer_area/my_profile.html')
