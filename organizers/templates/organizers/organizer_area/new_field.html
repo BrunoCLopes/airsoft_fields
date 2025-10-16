@@ -5,7 +5,8 @@
 <script src="{% static 'js/select.js' %}"></script>
 <script src="{% static 'js/field_image.js' %}"></script>
 <script src="{% static 'js/form_validation.js' %}"></script>
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8 flex flex-col items-center">
   <!-- Header -->
   <header class="mb-8 mt-12 lg:mt-0 w-full max-w-4xl">
@@ -39,9 +40,10 @@
   </header>
 
   <!-- Form -->
-  <form
+  <form method="POST"
     class="bg-white rounded-lg shadow-md border border-gray-200 p-6 md:p-8 w-full max-w-4xl"
   >
+  {% csrf_token %}
     <!-- Section: Informações Básicas -->
     <div class="mb-8">
       <h2
@@ -154,7 +156,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                stroke-width="2"
                 stroke="currentColor"
                 class="size-4"
               >
@@ -196,7 +198,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                stroke-width="2"
                 stroke="currentColor"
                 class="size-4"
               >

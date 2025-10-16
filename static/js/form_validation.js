@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const requiredFields = form.querySelectorAll(".required");
+    let isValid = true;
 
     requiredFields.forEach((field) => {
       const formContainer = field.closest(".form-item");
@@ -22,15 +23,23 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (field.id === "field-photo") {
+        const dropzone = formContainer.querySelector(".dropzone");
+
         if (field.files.length === 0) {
+          isValid = false;
           if (formContainer.querySelector(".empty-error")) return;
 
+          dropzone.classList.remove("outline-gray-300");
+          dropzone.classList.add("outline-red-500");
           formContainer.appendChild(span);
-        }else{
-            formContainer.querySelector(".empty-error")?.remove();
+        } else {
+          dropzone.classList.remove("outline-red-500");
+          dropzone.classList.add("outline-gray-300");
+          formContainer.querySelector(".empty-error")?.remove();
         }
       } else {
         if (!field.value.trim()) {
+          isValid = false;
           if (formContainer.querySelector(".empty-error")) return;
 
           formContainer.appendChild(span);
@@ -43,5 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+    if (isValid) form.submit();
   });
 });
