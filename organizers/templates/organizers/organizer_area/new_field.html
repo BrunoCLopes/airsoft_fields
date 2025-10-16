@@ -1,12 +1,11 @@
-{% extends "organizers/organizer_area/base.html" %}
-{% load static %}
-{% block title %} - Novo Campo{% endblock %}
+{% extends "organizers/organizer_area/base.html" %} 
+{% load static %} 
+{% block title %} - Novo Campo{% endblock %} 
 {% block script %}
 <script src="{% static 'js/select.js' %}"></script>
 <script src="{% static 'js/field_image.js' %}"></script>
 <script src="{% static 'js/form_validation.js' %}"></script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8 flex flex-col items-center">
   <!-- Header -->
   <header class="mb-8 mt-12 lg:mt-0 w-full max-w-4xl">
@@ -236,7 +235,7 @@
           <textarea
             id="field-description"
             name="field-description"
-            rows="5"
+            rows="4"
             minlength="50"
             class="required w-full px-4 py-2.5 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
             placeholder="Descreva seu campo: infraestrutura, diferenciais, regras específicas..."
@@ -269,15 +268,18 @@
       >
         Imagem do Campo
       </h2>
-      <div>
+      <div class="form-item">
         <label
           for="field-photo"
           class="block text-sm font-semibold text-gray-700 mb-2"
         >
           Foto do Campo
         </label>
-        <div
-          class="mt-2 flex justify-center px-6 pt-5 pb-6 outline-2 outline-gray-300 outline-dashed rounded-lg hover:border-indigo-400 transition-colors"
+
+        <!-- ✅ Label clicável envolvendo toda a dropzone -->
+        <label
+          for="field-photo"
+          class="dropzone mt-2 flex justify-center px-6 pt-5 pb-6 outline-2 outline-gray-300 outline-dashed rounded-lg hover:outline-indigo-400 hover:bg-indigo-50 transition-all cursor-pointer"
         >
           <div class="space-y-2 text-center">
             <svg
@@ -293,25 +295,25 @@
                 stroke-linejoin="round"
               />
             </svg>
-            <div class="flex text-sm text-gray-600">
-              <label
-                for="field-photo"
-                class="relative cursor-pointer bg-white rounded-md font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-              >
-                <span>Carregar foto</span>
-                <input
-                  id="field-photo"
-                  name="field-photo"
-                  type="file"
-                  accept="image/*"
-                  class="required sr-only"
-                />
-              </label>
+            <div class="flex justify-center text-sm text-gray-600">
+              <span class="font-semibold text-indigo-600 hover:text-indigo-500">
+                Carregar foto
+              </span>
               <p class="pl-1">ou arraste e solte</p>
             </div>
             <p class="text-xs text-gray-500">PNG, JPG, JPEG até 5MB</p>
           </div>
-        </div>
+        </label>
+
+        <!-- Input hidden -->
+        <input
+          id="field-photo"
+          name="field-photo"
+          type="file"
+          accept="image/*"
+          class="required sr-only"
+        />
+
         <!-- Preview da imagem -->
         <div id="image-preview" class="mt-4 hidden">
           <img
@@ -323,7 +325,7 @@
           <button
             type="button"
             id="remove-image"
-            class="mt-2 text-sm text-red-600 hover:text-red-800 hover:cursor-pointer font-semibold"
+            class="mt-2 text-sm text-red-600 hover:text-red-800 hover:cursor-pointer font-semibold block mx-auto"
           >
             Remover imagem
           </button>
