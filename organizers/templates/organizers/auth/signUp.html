@@ -1,40 +1,100 @@
 {% extends 'organizers/auth/base.html' %}
 {% load static %}
-{% block head %}
-<link rel="stylesheet" href="{% static 'organizers/css/auth/auth.css' %}">
-{% endblock %}
-{% block title %}
-Cadastro
-{% endblock %}
+{% block title %}Cadastro{% endblock %} 
 {% block content %}
-<form id="signUp-form" action="{% url 'signUp' %}" method="POST">
+<div
+  class="bg-white shadow-lg rounded-xl mx-auto w-full max-w-md md:max-w-lg border-2 border-gray-300"
+>
+  <div class="border-b p-4 md:p-6 border-gray-300">
+    <h1 class="text-base md:text-lg text-center font-bold tracking-wider">
+      CADASTRO ORGANIZADORES
+    </h1>
+  </div>
+  <div class="p-4 pb-0">
+    <h2 class="text-lg md:text-xl font-medium">Bem-vindo ao Airsoft Fields!</h2>
+  </div>
+  <form method="POST" action="{% url 'signUp' %}">
     {% csrf_token %}
-    <div class="form-title-container">
-        <h2 class="form-title">
-            Cadastro para Organizadores
-        </h2>
+    <div class="flex flex-col gap-2 md:gap-5.25 p-4 md:p-6 md:pb-1 pb-1">
+      <div class="form-item">
+        <label
+          for="signUp-username"
+          class="font-semibold text-sm text-gray-700 mb-0.5 block"
+          >Nome de Usuário</label
+        >
+        <input
+          id="signUp-username"
+          name="signUp-username"
+          type="text"
+          class="required h-11 md:h-12 w-full px-3 py-2 outline outline-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+          placeholder="Informe um nome de usuário"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-item">
+        <label
+          for="signUp-email"
+          class="font-semibold text-sm text-gray-700 mb-0.5 block"
+          >E-mail</label
+        >
+        <input
+          id="signUp-email"
+          name="signUp-email"
+          type="email"
+          class="required h-11 md:h-12 w-full px-3 py-2 outline outline-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+          placeholder="exemplo@email.com.br"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-item">
+        <label
+          for="signUp-password"
+          class="font-semibold text-sm text-gray-700 mb-0.5 block"
+          >Senha</label
+        >
+        <input
+          id="signUp-password"
+          name="signUp-password"
+          type="password"
+          class="required h-11 md:h-12 w-full px-3 py-2 outline outline-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+          placeholder="******"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-item">
+        <label
+          for="confirm-password"
+          class="font-semibold text-sm text-gray-700 mb-0.5 block"
+          >Confirmar Senha</label
+        >
+        <input
+          id="signUp-confirm-password"
+          name="signUp-confirm-password"
+          type="password"
+          class="required h-11 md:h-12 w-full px-3 py-2 outline outline-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm md:text-base"
+          placeholder="******"
+          autocomplete="off"
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="bg-indigo-500 text-white text-base md:text-xl w-full rounded-lg p-3 md:p-4 hover:cursor-pointer hover:bg-indigo-600 transition-colors"
+        >
+          Cadastrar
+        </button>
+      </div>
     </div>
-    <div class="form-group">
-        <label for="nome de usuário">Nome de usuário</label>
-        <input  placeholder="Ex.: usuário123" id="username" name="signUp-username" type="text">
-    </div>
-    <div class="form-group">
-        <label for="primeiro nome">Primeiro nome</label>
-        <input  placeholder="Ex.: João" id="first-name" name="signUp-first-name" type="text">
-    </div>
-    <div class="form-group">
-        <label for="e-mail">E-mail</label>
-        <input placeholder="exemplo@email.com" id="email" name="signUp-email" type="email">
-    </div>
-    <div class="form-group">
-        <label for="senha">Senha</label>
-        <input placeholder="••••••••" id="password" name="signUp-password" type="password">
-    </div>
-    <div class="btn-container">
-        <button id="signUp-btn" class="btn-submit" type="submit">Enviar</button>
-    </div>
-    <div class="bottom-container">
-        Já possui uma conta?<a class="link" href="{% url 'signIn' %}">Entrar</a>
-    </div>
-</form>
+  </form>
+  <div
+    class="flex flex-wrap justify-center gap-1 pt-1 pb-4 md:pb-6 px-4 text-sm md:text-base"
+  >
+    <span>Já possui uma conta?</span>
+    <a
+      href="{% url 'signIn' %}"
+      class="text-indigo-500 font-medium hover:text-indigo-600"
+      >Entrar</a
+    >
+  </div>
+</div>
 {% endblock %}

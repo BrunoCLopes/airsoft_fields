@@ -1,18 +1,27 @@
 {% extends "fields/base.html" %}
-{% load static %}
-{% block title %}
-Sobre
-{% endblock %}
-{% block head %}
-<link rel="stylesheet" href="{% static 'fields/css/about.css' %}">
-{% endblock %}
+{% load static %} 
+{% block title %} - Sobre 
+{% endblock %} 
 {% block content %}
-<section class="about-section">
-    <div class="about-container">
-        <h1 class="about-title">Sobre o Airsoft Fields</h1>
-        <p class="about-description">O <strong>Airsoft Fields</strong> nasceu da paixão pelo esporte Airsoft e da necessidade de uma plataforma centralizada. Nosso objetivo é simples: ser o seu guia definitivo para encontrar campos de Airsoft em todo o Brasil. Chega de buscas em fóruns e redes sociais; aqui, você tem acesso a ferramentas de busca eficientes e informações detalhadas sobre os locais de jogo mais próximos a você.</p>
-        
-        <p class="about-description">Acreditamos que o acesso fácil aos campos é fundamental para o crescimento da comunidade. Por isso, nossa missão é conectar jogadores de todos os níveis, desde o iniciante que busca seu primeiro campo até o veterano que quer explorar novos territórios. Junte-se a nós e ajude a fortalecer a comunidade de Airsoft no Brasil, um campo de cada vez.</p>
-    </div>
-</section>
+<div class="container mx-auto px-4 py-12 max-w-3xl">
+  <!-- Título -->
+  <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
+    Sobre o <span class="text-indigo-600">Airsoft Fields</span>
+  </h1>
+
+  <h2 class="text-center text-2xl font-bold text-indigo-600 mb-4">Nossa Missão</h2>
+  <p class="text-xl text-gray-700 text-justify mb-6">
+    O <span class="text-indigo-600 font-semibold">Airsoft Fields</span> nasceu
+    da paixão pelo esporte Airsoft e da necessidade de uma plataforma
+    centralizada. Nosso objetivo é ser o seu guia definitivo para encontrar
+    campos de Airsoft em todo o Brasil.
+  </p>
+
+  <h2 class="text-center text-2xl font-bold text-indigo-600 mb-4">Nossa Visão</h2>
+  <p class="text-xl text-gray-700 text-justify">
+    Acreditamos que o acesso fácil aos campos é fundamental para o crescimento
+    da comunidade. Por isso, nossa missão é conectar jogadores de todos os
+    níveis, desde o iniciante até o veterano.
+  </p>
+</div>
 {% endblock %}

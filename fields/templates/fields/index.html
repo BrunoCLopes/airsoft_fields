@@ -1,76 +1,505 @@
 {% extends "fields/base.html" %}
 {% load static %}
-{% block head %}
-<link rel="stylesheet" href="{% static 'fields/css/index.css' %}">
+{% block script %}
+<script src="{% static 'js/select.js' %}"></script>
 {% endblock %}
 {% block content %}
-<div class="filter-bar">
-    <div class="filter-group">
-        <label for="field-name">Nome do Campo</label>
-        <div name="container-input" class="container-input">
-            <input name="input-text" type="text" id="field-name" placeholder="Digite o nome">
-            <button class="clear-input-button" name="clear-input-button">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+<div class="m-4 md:m-10">
+  <div
+    class="w-full max-w-5xl mx-auto px-4 md:px-6 py-4 md:py-6 rounded-2xl md:rounded-full bg-gray-50 border border-gray-200 shadow-sm"
+  >
+    <div
+      class="flex flex-col md:flex-row items-stretch md:items-end justify-center gap-4 md:gap-6"
+    >
+      <div class="flex flex-col w-full md:w-60">
+        <label
+          for="field-name"
+          class="font-semibold text-sm text-gray-700 mb-0.5"
+          >Nome do Campo</label
+        >
+        <div class="relative flex items-center">
+          <input
+            id="field-name"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Digite o nome..."
+          />
+          <button
+            class="clear-filter absolute right-1 text-gray-500 rounded-full p-0.25 hover:cursor-pointer hover:text-gray-700 hover:bg-gray-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
+      </div>
+      <div class="flex flex-col w-full md:w-48 relative">
+        <label
+          for="field-state"
+          class="font-semibold text-sm text-gray-700 mb-0.5"
+          >Estado</label
+        >
+        <div class="flex items-center">
+          <input
+            id="field-state"
+            type="text"
+            class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Digite o estado..."
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            class="clear-filter absolute right-1 text-gray-500 rounded-full p-0.25 hover:cursor-pointer hover:text-gray-700 hover:bg-gray-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          id="state-options"
+          class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-48 overflow-y-auto z-10 hidden mt-1"
+        ></div>
+      </div>
+      <div class="flex flex-col w-full md:w-48 relative">
+        <label
+          for="field-city"
+          class="font-semibold text-sm text-gray-700 mb-0.5"
+          >Cidade</label
+        >
+        <div class="flex items-center">
+          <input
+            disabled
+            id="field-city"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Digite a cidade..."
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            class="clear-filter absolute right-1 text-gray-500 rounded-full p-0.25 hover:cursor-pointer hover:text-gray-700 hover:bg-gray-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          id="city-options"
+          class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-48 overflow-y-auto z-10 hidden mt-1"
+        ></div>
+      </div>
+      <div class="flex flex-col w-full md:w-48">
+        <label
+          for="field-type"
+          class="font-semibold text-sm text-gray-700 mb-0.5"
+          >Tipo de Campo</label
+        >
+        <select
+          id="field-type"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+        >
+          <option value="">Selecione</option>
+          <option value="Ambos">Ambos</option>
+          <option value="Mata">Mata</option>
+          <option value="CQB">CQB</option>
+        </select>
+      </div>
+      <div class="flex flex-col w-full md:w-auto">
+        <button
+          class="w-full md:w-15 h-12 md:h-15 bg-indigo-600 text-white rounded-md md:rounded-full hover:bg-indigo-700 focus:outline-none hover:cursor-pointer transition-colors flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="size-5 md:size-7"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span class="md:hidden ml-2">Buscar</span>
+        </button>
+      </div>
     </div>
-    <div name="container-select" class="filter-group container-select">
-        <label for="state">Estado</label>
-        <div name="container-input" class="container-input">
-            <input  name="trigger-select" type="text" id="filter-state" class="input readonly-field" readonly
-                placeholder="Selecione">
-            <button class="clear-input-button" name="clear-input-button">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-        <div name="options-select" class="search-container" id="search-state-container">
-            <input type="text" id="search-state" class="search-input" placeholder="Digite o Estado..."
-                autocomplete="off">
-            <div id="state-options" class="search-options"></div>
-        </div>
-    </div>
-    <div name="container-select" class="filter-group container-select">
-        <label for="city">Cidade</label>
-        <div name="container-input" class="container-input">
-            <input name="trigger-select" type="text" id="filter-city" class="input readonly-field" readonly placeholder="Selecione" disabled>
-            <button class="clear-input-button" name="clear-input-button">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-        <div name="options-select" class="search-container" id="search-city-container">
-            <input type="text" id="search-city" class="search-input" placeholder="Digite a cidade..."
-                autocomplete="off">
-            <div id="city-options" class="search-options"></div>
-        </div>
-    </div>
-    <div name="container-select" class="filter-group container-select">
-        <label for="field-type">Tipo de Campo</label>
-        <div name="container-input" class="container-input">
-            <input name="trigger-select" type="text" id="field-type" class="input readonly-field" readonly
-            placeholder="Selecione">
-            <button class="clear-input-button" name="clear-input-button">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-        <div name="options-select" id="field-type-options" class="options"></div>
-    </div>
-    <button id="search-button-filter" class="btn-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
+  </div>
 </div>
-<div id="applied-filters-container" class="applied-filters-container"></div>
-<div class="fields-container">
-    <div class="map-placeholder">
-        <p>Lista dos campos</p>
+<div class="h-screen bg-white pt-10 shadow-2xl">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pl-6 pr-6"
+  >
+    <!-- Card do Campo 1 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          CQB
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">Campo Alpha</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Campo urbano especializado em combate CQB com múltiplos ambientes e
+          cenários realistas para treinamento tático.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          São Paulo, SP
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 25,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
     </div>
-</div>
-<div class="fields-container">
-    <div class="map-placeholder">
-        <p>Lista dos campos</p>
+
+    <!-- Card do Campo 2 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          Mata
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">Campo Woodland</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Campo em área de mata com trilhas naturais e obstáculos orgânicos para
+          combate tático em ambiente florestal.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Rio de Janeiro, RJ
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 30,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
     </div>
+
+    <!-- Card do Campo 3 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          Ambos
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">Campo Tactical</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Campo misto com áreas urbanas e de mata, ideal para diferentes
+          modalidades de jogo e treinamentos variados.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Minas Gerais, MG
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 35,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card do Campo 4 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1542401886-65d6c61db217?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          CQB
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">
+          Campo Urban Strike
+        </h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Complexo urbano com construções abandonadas e cenários industriais
+          para simulações realistas de combate.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Paraná, PR
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 28,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card do Campo 5 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          Mata
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">
+          Campo Forest Ops
+        </h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Área extensa de floresta com rios, pontes e abrigos naturais para
+          operações de longo alcance.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Santa Catarina, SC
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 32,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card do Campo 6 -->
+    <div
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    >
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop&crop=center"
+          alt="Campo de Airsoft"
+          class="w-full h-48 object-cover"
+        />
+        <div
+          class="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-semibold"
+        >
+          Ambos
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">
+          Campo Multi Zone
+        </h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Complexo com múltiplas zonas de combate, incluindo áreas urbanas,
+          rurais e florestais para máxima versatilidade.
+        </p>
+        <div class="flex items-center text-gray-500 text-sm mb-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 mr-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Bahia, BA
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-indigo-600 font-semibold text-lg">R$ 40,00</span>
+          <button
+            class="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock content %}
-{% block javascript %}
-<script src="{% static 'js/common_functions.js' %}"></script>
-<script src="{% static 'fields/js/index.js' %}"></script>
 {% endblock %}
