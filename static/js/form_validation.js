@@ -23,18 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (field.id === "field-photo") {
-        const dropzone = formContainer.querySelector(".dropzone");
+        const fileZone = formContainer.querySelector(".file-zone");
 
         if (field.files.length === 0) {
           isValid = false;
           if (formContainer.querySelector(".empty-error")) return;
 
-          dropzone.classList.remove("outline-gray-300");
-          dropzone.classList.add("outline-red-500");
+          fileZone.classList.remove("outline-gray-300");
+          fileZone.classList.add("outline-red-500");
           formContainer.appendChild(span);
         } else {
-          dropzone.classList.remove("outline-red-500");
-          dropzone.classList.add("outline-gray-300");
+          fileZone.classList.remove("outline-red-500");
+          fileZone.classList.add("outline-gray-300");
           formContainer.querySelector(".empty-error")?.remove();
         }
       } else {
