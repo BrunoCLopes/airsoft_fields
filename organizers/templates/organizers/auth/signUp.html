@@ -1,6 +1,9 @@
 {% extends 'organizers/auth/base.html' %}
 {% load static %}
-{% block title %}Cadastro{% endblock %} 
+{% block title %}Cadastro{% endblock %}
+{% block script %}
+<script src="{% static 'js/forms/signUp.js' %}"></script>
+{% endblock %}
 {% block content %}
 <div
   class="bg-white shadow-lg rounded-xl mx-auto w-full max-w-md md:max-w-lg border-2 border-gray-300"
@@ -13,7 +16,7 @@
   <div class="p-4 pb-0">
     <h2 class="text-lg md:text-xl font-medium">Bem-vindo ao Airsoft Fields!</h2>
   </div>
-  <form method="POST" action="{% url 'signUp' %}">
+  <form id="signUp-form" method="POST" action="{% url 'signUp' %}">
     {% csrf_token %}
     <div class="flex flex-col gap-2 md:gap-5.25 p-4 md:p-6 md:pb-1 pb-1">
       <div class="form-item">
@@ -63,7 +66,7 @@
       </div>
       <div class="form-item">
         <label
-          for="confirm-password"
+          for="signUp-confirm-password"
           class="font-semibold text-sm text-gray-700 mb-0.5 block"
           >Confirmar Senha</label
         >
