@@ -1,7 +1,6 @@
-from django.forms import ValidationError
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from .models import Organizer
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
@@ -25,14 +24,9 @@ def signUp(request):
             user.is_active = False
             user.save()
 
-            messages.success(request, 'Sucesso! Aguarde a aprovação do seu cadastro por nossa equipe.')
             return redirect('index')
-        
-        except ValidationError:
-            return render(request, 'organizers/auth/signUp.html', {'invalidEmail':'E-mail inválido.'})   
 
         except Exception:
-            messages.error(request, 'Erro ao criar a conta, tente novamente mais tarde.')
             return redirect('index')
 
 def signIn(request):

@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let hasErrors = false;
 
-        if(!validateRequiredFields(signUpForm)) return;
+        if(!validateRequiredFields(signUpForm)){
+            hasErrors = true;
+        };
 
         const email = document.getElementById("signUp-email");
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

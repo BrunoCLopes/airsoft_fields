@@ -1,5 +1,9 @@
-{% extends 'organizers/auth/base.html' %} 
+{% extends 'organizers/auth/base.html' %}
+{% load static %}
 {% block title %}Login{% endblock %}
+{% block script %}
+<script src="{% static 'js/forms/signIn.js' %}"></script>
+{% endblock %}
 {% block content %}
 <div
   class="bg-white shadow-lg rounded-xl mx-auto w-full max-w-md md:max-w-lg border-2 border-gray-300"
@@ -12,7 +16,7 @@
   <div class="p-4 pb-0">
     <h2 class="text-lg md:text-xl font-medium">Bem-vindo ao Airsoft Fields!</h2>
   </div>
-  <form method="POST" action="{% url 'signIn' %}">
+  <form id="signIn-form" method="POST" action="{% url 'signIn' %}">
     {% csrf_token %}
     <div class="flex flex-col gap-5.25 p-4 md:p-6 md:pb-1 pb-1">
       <div class="form-item">
