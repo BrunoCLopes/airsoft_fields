@@ -1,9 +1,6 @@
-{% extends "fields/base.html" %}
-{% load static %}
-{% block script %}
+{% extends "fields/base.html" %} {% load static %} {% block script %}
 <script src="{% static 'js/select.js' %}"></script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <div class="m-4 md:m-10">
   <div
     class="w-full max-w-5xl mx-auto px-4 md:px-6 py-4 md:py-6 rounded-2xl md:rounded-full bg-gray-50 border border-gray-200 shadow-sm"
@@ -162,8 +159,58 @@
   </div>
 </div>
 
-{% if message %}
-<div class="absolute bg-red-500">{{message.text}}</div>
+<div class="relative flex items-center justify-center">
+  <div class="absolute">
+
+  </div>
+</div>
+
+<div class="relative flex items-center justify-center">
+  <div class="absolute">
+    <div class="flex items-center border border-red-300 p-4 pt-2 pb-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>
+  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if messages %} 
+    {% for message in messages %} 
+          {% if message.tags == 'error' %}
+              <div class="relative flex items-center justify-center">
+                <div class="absolute">
+                  <div class="flex items-center border border-red-300 p-4 pt-2 pb-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                      {{ message }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+          {% elif message.tags == 'success' %}
+          <div class="relative flex items-center justify-center">
+            <div class="absolute">
+              <div class="flex items-center border border-green-300 p-4 pt-2 pb-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                  {{ message }}
+                </div>
+              </div>
+            </div>
+          </div>  
+          {% endif %} 
+    {% endfor %} 
 {% endif %}
 
 <div class="h-screen bg-white pt-10 shadow-2xl">

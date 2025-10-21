@@ -23,10 +23,11 @@ def signUp(request):
             user = Organizer.objects.create_user(username=username, email=email, password=password)
             user.is_active = False
             user.save()
-
             return redirect('index')
-
+        
         except Exception:
+            messages.error(request,
+                'Ocorreu um erro ao tentar criar sua conta. Tente novamente mais tarde.')
             return redirect('index')
 
 def signIn(request):
@@ -45,7 +46,9 @@ def signIn(request):
             else:
                 return render(request, 'organizers/auth/signIn.html', {'userNotFound':'E-mail ou senha incorretos.'})
         except Exception:
-            messages.error(request, 'Erro ao fazer login, tente novamente mais tarde.')
+            messages.error(request, {
+                'Ocorreu um erro ao tentar efetuar o login. Tente novamente mais tarde.'
+            })
             return redirect('index')
 
 @login_required()
