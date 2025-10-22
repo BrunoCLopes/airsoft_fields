@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Organizer
 from django.contrib import messages
+from .models import Organizer
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
@@ -8,6 +8,7 @@ from django.core.validators import validate_email
 # Create your views here.
 def signUp(request):
     if request.method == 'GET':
+        print(1)
         return render(request, 'organizers/auth/signUp.html')
     else:
         username = request.POST.get('signUp-username')
@@ -15,19 +16,24 @@ def signUp(request):
         password = request.POST.get('signUp-password')
         confirmPassword = request.POST.get('signUp-confirm-password')
 
-        if password != confirmPassword: return render(request, 'organizers/auth/signUp.html', {'passwordMismatch':'As senhas não coincidem.'})
-
         try:
+            if not all([username, email, password, confirmPassword]):  
+                raise Exception 
+
             validate_email(email)
-            
+ 
+            if password != confirmPassword:
+                raise Exception
+
             user = Organizer.objects.create_user(username=username, email=email, password=password)
             user.is_active = False
             user.save()
-            return redirect('index')
+
+            messages.success(request, 'Sucesso! Aguarde a aprovação do seu cadastro por nossa equipe.')
+            return redirect('index') 
         
         except Exception:
-            messages.error(request,
-                'Ocorreu um erro ao tentar criar sua conta. Tente novamente mais tarde.')
+            messages.error(request, 'Erro ao criar a conta, tente novamente mais tarde.')
             return redirect('index')
 
 def signIn(request):
@@ -45,11 +51,10 @@ def signIn(request):
                 return redirect('my_fields')
             else:
                 return render(request, 'organizers/auth/signIn.html', {'userNotFound':'E-mail ou senha incorretos.'})
+            
         except Exception:
-            messages.error(request, {
-                'Ocorreu um erro ao tentar efetuar o login. Tente novamente mais tarde.'
-            })
-            return redirect('index')
+            messages.error(request, 'Erro ao fazer login, tente novamente mais tarde.')
+            return redirect('index') 
 
 @login_required()
 def my_fields(request):

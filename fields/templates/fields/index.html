@@ -1,6 +1,10 @@
-{% extends "fields/base.html" %} {% load static %} {% block script %}
-<script src="{% static 'js/select.js' %}"></script>
-{% endblock %} {% block content %}
+{% extends "fields/base.html" %} 
+{% load static %} 
+{% block script %}
+  <script src="{% static 'js/select.js' %}"></script>
+  <script src="{% static 'js/messages.js' %}"></script>
+{% endblock %} 
+{% block content %}
 <div class="m-4 md:m-10">
   <div
     class="w-full max-w-5xl mx-auto px-4 md:px-6 py-4 md:py-6 rounded-2xl md:rounded-full bg-gray-50 border border-gray-200 shadow-sm"
@@ -167,13 +171,13 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="relative flex items-center justify-center">
+          <div class="relative flex items-center justify-center">
             <div class="absolute">
-              <div class="flex items-center border p-4 pt-2 pb-2 text-sm rounded-lg 
+              <div class="flex items-center p-4 pt-2 pb-2 text-sm rounded-lg font-medium message-alert
             {% if message.tags == 'success' %}
-              border-green-300  text-green-800 bg-green-50
+               text-green-800 bg-green-50
             {% elif message.tags == 'error' %}
-              border-red-300 text-red-800 bg-red-50
+               text-red-800 bg-red-50
             {% endif %}
               " role="alert">
                 <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
