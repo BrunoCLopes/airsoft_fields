@@ -165,40 +165,17 @@
   </div>
 </div>
 
-<div class="relative flex items-center justify-center">
-  <div class="absolute">
-    <div class="flex items-center border border-red-300 p-4 pt-2 pb-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-      <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-      </svg>
-      <span class="sr-only">Info</span>
-      <div>
-  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </div>
-    </div>
-  </div>
-</div>
-
-{% if messages %} 
-    {% for message in messages %} 
-          {% if message.tags == 'error' %}
-              <div class="relative flex items-center justify-center">
-                <div class="absolute">
-                  <div class="flex items-center border border-red-300 p-4 pt-2 pb-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                    </svg>
-                    <span class="sr-only">Info</span>
-                    <div>
-                      {{ message }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-          {% elif message.tags == 'success' %}
-          <div class="relative flex items-center justify-center">
+{% if messages %}
+    {% for message in messages %}
+    <div class="relative flex items-center justify-center">
             <div class="absolute">
-              <div class="flex items-center border border-green-300 p-4 pt-2 pb-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+              <div class="flex items-center border p-4 pt-2 pb-2 text-sm rounded-lg 
+            {% if message.tags == 'success' %}
+              border-green-300  text-green-800 bg-green-50
+            {% elif message.tags == 'error' %}
+              border-red-300 text-red-800 bg-red-50
+            {% endif %}
+              " role="alert">
                 <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                 </svg>
@@ -209,8 +186,7 @@
               </div>
             </div>
           </div>  
-          {% endif %} 
-    {% endfor %} 
+    {% endfor %}
 {% endif %}
 
 <div class="h-screen bg-white pt-10 shadow-2xl">
