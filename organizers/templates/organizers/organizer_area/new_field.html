@@ -5,6 +5,7 @@
 <script src="{% static 'js/select.js' %}"></script>
 <script src="{% static 'js/field_image.js' %}"></script>
 <script src="{% static 'js/forms/form_validation.js' %}"></script>
+<script src="{% static 'js/forms/new_field.js' %}"></script>
 {% endblock %} 
 {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8 flex flex-col items-center">
@@ -40,7 +41,7 @@
   </header>
 
   <!-- Form -->
-  <form method="POST"
+  <form method="POST" id="new-field-form"
     class="bg-white rounded-lg shadow-md border border-gray-200 p-6 md:p-8 w-full max-w-4xl"
   >
   {% csrf_token %}
@@ -102,7 +103,7 @@
             id="field-phone"
             name="field-phone"
             class="required w-full px-4 py-2.5 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="(11) 98765-4321"
+            placeholder="(XX) XXXXX-XXXX"
           />
         </div>
       </div>
@@ -238,7 +239,6 @@
             id="field-description"
             name="field-description"
             rows="4"
-            minlength="50"
             class="required w-full px-4 py-2.5 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
             placeholder="Descreva seu campo: infraestrutura, diferenciais, regras específicas..."
           ></textarea>

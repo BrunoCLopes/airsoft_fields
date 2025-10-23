@@ -11,12 +11,12 @@ def signUp(request):
         print(1)
         return render(request, 'organizers/auth/signUp.html')
     else:
-        username = request.POST.get('signUp-username')
-        email = request.POST.get('signUp-email')
-        password = request.POST.get('signUp-password')
-        confirmPassword = request.POST.get('signUp-confirm-password')
-
         try:
+            username = request.POST.get('signUp-username')
+            email = request.POST.get('signUp-email')
+            password = request.POST.get('signUp-password')
+            confirmPassword = request.POST.get('signUp-confirm-password')
+
             if not all([username, email, password, confirmPassword]):  
                 raise Exception 
 
@@ -43,6 +43,11 @@ def signIn(request):
         try:
             email = request.POST.get('signIn-email')
             password = request.POST.get('signIn-password')
+
+            if not all([email, password]):  
+                raise Exception
+
+            validate_email(email)
 
             organizer = authenticate(request, username=email, password=password)
 

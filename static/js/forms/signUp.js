@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!emailRegex.test(email.value)) {
             showFieldError(email.parentElement, email, 'Email inválido.');
             hasErrors = true;
+        }else{
+            clearFieldError(email.parentElement, email);
         }
         
         const password = document.getElementById("signUp-password");
@@ -24,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (password.value != confirmPassword.value){
             showFieldError(confirmPassword.parentElement, confirmPassword, 'As senhas não coincidem.');
             hasErrors = true;
+        }else{
+            clearFieldError(confirmPassword.parentElement, confirmPassword);
         }
 
         if (hasErrors) return;

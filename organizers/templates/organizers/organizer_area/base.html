@@ -62,17 +62,27 @@
       <div class="p-6 border-b border-gray-200">
         <div class="flex items-center gap-3">
           <div class="relative">
-            <img
-              src="https://ui-avatars.com/api/?name=João+Silva&background=6366f1&color=fff&size=128"
-              alt="Foto do Organizador"
-              class="w-12 h-12 rounded-full border-2 border-indigo-500"
-            />
-            <div
-              class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"
-            ></div>
+            <div class="w-12 h-12 outline-1 outline-indigo-600 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+            </div>
           </div>
           <div class="flex-1 min-w-0">
-            <h3 class="font-semibold text-gray-800 truncate">{{ user.email }}João Silva</h3>
+            <h3 class="font-semibold text-gray-800 truncate">
+              {{ user.username }}
+            </h3>
             <span
               class="inline-block px-2 py-0.5 text-xs font-medium bg-indigo-100 text-indigo-700 rounded-full"
               >Organizador</span
@@ -86,9 +96,7 @@
           <li>
             <a
               href="{% url 'my_fields' %}"
-              class="
-              {% if request.resolver_match.url_name == 'my_fields' %}text-indigo-600 bg-indigo-50{% endif %}
-            flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
+              class="{% if request.resolver_match.url_name == 'my_fields' %}text-indigo-600 bg-indigo-50{% endif %} flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,9 +123,7 @@
           <li>
             <a
               href="{% url 'new_field' %}"
-              class="
-              {% if request.resolver_match.url_name == 'new_field' %}text-indigo-600 bg-indigo-50{% endif %}
-              flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
+              class="{% if request.resolver_match.url_name == 'new_field' %}text-indigo-600 bg-indigo-50{% endif %} flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,9 +145,7 @@
           <li>
             <a
               href="{% url 'my_profile' %}"
-              class="
-              {% if request.resolver_match.url_name == 'my_profile' %}text-indigo-600 bg-indigo-50{% endif %}
-              flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
+              class="{% if request.resolver_match.url_name == 'my_profile' %}text-indigo-600 bg-indigo-50{% endif %} flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -191,6 +195,6 @@
       id="overlay"
       class="hidden lg:hidden fixed inset-0 bg-black opacity-25 z-30"
     ></div>
-        {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
   </body>
 </html>

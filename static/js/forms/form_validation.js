@@ -6,21 +6,21 @@ function validateRequiredFields(form) {
     const formContainer = field.closest(".form-item");
     const label = formContainer.querySelector("label").textContent;
 
-    if (field.id === "field-photo") {
+    if (field.type === "file") {
       const fileZone = formContainer.querySelector(".file-zone");
 
       if (field.files.length === 0) {
         isValid = false;
-        showFileError(formContainer, fileZone, `O campo ${label} é obrigatório.`);
-      } else {
-        clearFileError(formContainer, fileZone);
+        showFileError(
+          formContainer,
+          fileZone,
+          `O campo ${label} é obrigatório.`
+        );
       }
     } else {
       if (!field.value.trim()) {
         isValid = false;
         showFieldError(formContainer, field, `O campo ${label} é obrigatório.`);
-      } else {
-        clearFieldError(formContainer, field);
       }
     }
   });
@@ -29,7 +29,7 @@ function validateRequiredFields(form) {
 }
 
 function showFileError(formContainer, fileZone, message) {
-  if (formContainer.querySelector(".empty-error")) return;
+  clearFileError(formContainer, fileZone);
 
   const span = createErrorElement(message);
   fileZone.classList.remove("outline-gray-300");
@@ -44,148 +44,7 @@ function clearFileError(formContainer, fileZone) {
 }
 
 function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
-
-  const span = createErrorElement(message);
-  formContainer.appendChild(span);
-  field.classList.remove("outline", "outline-gray-300");
-  field.classList.add("outline-2", "outline-red-500");
-}
-
-function clearFieldError(formContainer, field) {
-  field.classList.remove("outline-2", "outline-red-500");
-  field.classList.add("outline", "outline-gray-300");
-  formContainer.querySelector(".empty-error")?.remove();
-}
-
-function createErrorElement(message) {
-  const span = document.createElement("span");
-  span.textContent = message;
-  span.classList.add(
-    "empty-error",
-    "text-red-500",
-    "font-medium",
-    "text-sm",
-    "block",
-    "md:absolute"
-  );
-  return span;
-}
-function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
-
-  const span = createErrorElement(message);
-  formContainer.appendChild(span);
-  field.classList.remove("outline", "outline-gray-300");
-  field.classList.add("outline-2", "outline-red-500");
-}
-
-function clearFieldError(formContainer, field) {
-  field.classList.remove("outline-2", "outline-red-500");
-  field.classList.add("outline", "outline-gray-300");
-  formContainer.querySelector(".empty-error")?.remove();
-}
-
-function createErrorElement(message) {
-  const span = document.createElement("span");
-  span.textContent = message;
-  span.classList.add(
-    "empty-error",
-    "text-red-500",
-    "font-medium",
-    "text-sm",
-    "block",
-    "md:absolute"
-  );
-  return span;
-}
-function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
-
-  const span = createErrorElement(message);
-  formContainer.appendChild(span);
-  field.classList.remove("outline", "outline-gray-300");
-  field.classList.add("outline-2", "outline-red-500");
-}
-
-function clearFieldError(formContainer, field) {
-  field.classList.remove("outline-2", "outline-red-500");
-  field.classList.add("outline", "outline-gray-300");
-  formContainer.querySelector(".empty-error")?.remove();
-}
-
-function createErrorElement(message) {
-  const span = document.createElement("span");
-  span.textContent = message;
-  span.classList.add(
-    "empty-error",
-    "text-red-500",
-    "font-medium",
-    "text-sm",
-    "block",
-    "md:absolute"
-  );
-  return span;
-}
-function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
-
-  const span = createErrorElement(message);
-  formContainer.appendChild(span);
-  field.classList.remove("outline", "outline-gray-300");
-  field.classList.add("outline-2", "outline-red-500");
-}
-
-function clearFieldError(formContainer, field) {
-  field.classList.remove("outline-2", "outline-red-500");
-  field.classList.add("outline", "outline-gray-300");
-  formContainer.querySelector(".empty-error")?.remove();
-}
-
-function createErrorElement(message) {
-  const span = document.createElement("span");
-  span.textContent = message;
-  span.classList.add(
-    "empty-error",
-    "text-red-500",
-    "font-medium",
-    "text-sm",
-    "block",
-    "md:absolute"
-  );
-  return span;
-}
-function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
-
-  const span = createErrorElement(message);
-  formContainer.appendChild(span);
-  field.classList.remove("outline", "outline-gray-300");
-  field.classList.add("outline-2", "outline-red-500");
-}
-
-function clearFieldError(formContainer, field) {
-  field.classList.remove("outline-2", "outline-red-500");
-  field.classList.add("outline", "outline-gray-300");
-  formContainer.querySelector(".empty-error")?.remove();
-}
-
-function createErrorElement(message) {
-  const span = document.createElement("span");
-  span.textContent = message;
-  span.classList.add(
-    "empty-error",
-    "text-red-500",
-    "font-medium",
-    "text-sm",
-    "block",
-    "md:absolute"
-  );
-  return span;
-}
-
-function showFieldError(formContainer, field, message) {
-  if (formContainer.querySelector(".empty-error")) return;
+  clearFieldError(formContainer, field);
 
   const span = createErrorElement(message);
   formContainer.appendChild(span);

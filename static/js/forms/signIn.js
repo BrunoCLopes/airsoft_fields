@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!emailRegex.test(email.value)) {
             showFieldError(email.parentElement, email, 'Email inválido.');
             hasErrors = true;
+        }else{
+            clearFieldError(email.parentElement, email);
         }
 
         if (hasErrors) return;
