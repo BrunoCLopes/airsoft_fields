@@ -41,7 +41,7 @@
   </header>
 
   <!-- Form -->
-  <form method="POST" id="new-field-form"
+  <form method="POST" id="new-field-form" action="{% url 'new_field' %}" enctype="multipart/form-data"
     class="bg-white rounded-lg shadow-md border border-gray-200 p-6 md:p-8 w-full max-w-4xl"
   >
   {% csrf_token %}
@@ -84,8 +84,8 @@
             class="required w-full px-4 py-2.5 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
           >
             <option value="">Selecione</option>
-            <option value="Ambos">Ambos</option>
-            <option value="Mata">Mata</option>
+            <option value="MISTO">Misto</option>
+            <option value="MATA">Mata</option>
             <option value="CQB">CQB</option>
           </select>
         </div>
@@ -144,6 +144,7 @@
           <div class="flex items-center">
             <input
               id="field-state"
+              name="field-state"
               type="text"
               class="required w-full px-3 py-2 pr-10 outline outline-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Digite o estado..."
@@ -186,6 +187,7 @@
             <input
               disabled
               id="field-city"
+              name="field-city"
               type="text"
               class="required w-full px-3 py-2 outline outline-gray-300 rounded-md disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Digite a cidade..."

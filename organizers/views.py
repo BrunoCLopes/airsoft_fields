@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Organizer
+from organizers.models import Organizer
+from fields.models import Field, FieldPhoto
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
@@ -67,7 +68,47 @@ def my_fields(request):
 
 @login_required()
 def new_field(request):
-    return render(request, 'organizers/organizer_area/new_field.html')
+    if request.method == 'GET':
+        return render(request, 'organizers/organizer_area/new_field.html')
+    else:
+        try:
+            field_name = request.POST.get('field-name')
+            field_type = request.POST.get('field-type')
+            address = request.POST.get('field-address')
+            state = request.POST.get('field-state')
+            city = request.POST.get('field-city')
+            phone = request.POST.get('field-phone')
+            description = request.POST.get('field-description')
+            operating_hours = request.POST.get('field-hours')
+            field_photo = request.FILES.get('field-photo')
+            user = request.user
+
+            if not all([field_name, field_type, address, state, city, phone, description, operating_hours, user, field_photo]):  
+                raise Exception 
+
+            new_field = Field.objects.create(
+                field_name=field_name,
+                field_type=field_type,
+                address=address,
+                state=state,
+                city=city,
+                phone=phone,
+                description=description,
+                operating_hours=operating_hours,
+                organizer=user
+            )
+            
+            field_photo = FieldPhoto.objects.create(
+                field=new_field,
+                photo=field_photo
+            )
+
+            messages.success(request, 'Campo criado com sucesso!')
+            return redirect('my_fields') 
+        
+        except Exception:
+            messages.error(request, 'Erro ao criar o campo, tente novamente mais tarde.')
+            return redirect('new_field')
 
 @login_required()
 def my_profile(request):

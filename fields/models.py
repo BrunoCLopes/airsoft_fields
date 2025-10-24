@@ -33,18 +33,18 @@ CREATE TABLE FieldPhotos (
 class Field(models.Model):
 
     FIELD_TYPE_CHOICES = [
-        ('CQB', 'CQB (Close Quarters Battle)'),
+        ('CQB', 'CQB'),
         ('MATA', 'Mata'),
         ('MISTO', 'Misto')
     ]
 
     field_name = models.CharField(max_length=200, verbose_name="Nome do campo")
-    field_type = models.CharField(max_length=10, choices=FIELD_TYPE_CHOICES, verbose_name='Tipo de Campo')
+    field_type = models.CharField(max_length=10, choices=FIELD_TYPE_CHOICES, verbose_name="Tipo de Campo")
     address = models.TextField(verbose_name="Endereço")
     state = models.CharField(max_length=100, verbose_name="Estado")
     city = models.CharField(max_length=100, verbose_name="Cidade")
     phone = models.CharField(max_length=20, verbose_name="Telefone")
-    description = models.TextField(blank=True, null=True, verbose_name="Descrição")
+    description = models.TextField(verbose_name="Descrição")
     operating_hours = models.TextField(verbose_name="Horário de funcionamento")
     visible = models.BooleanField(default=True, verbose_name="Visível")
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Organizador")
@@ -58,8 +58,7 @@ class Field(models.Model):
 
 class FieldPhoto(models.Model):
     field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name='photos', verbose_name="Campo")
-    photo_url = models.URLField(verbose_name="URL da foto")
-    order_in_gallery = models.PositiveIntegerField(default=0, verbose_name="Ordem na galeria")
+    photo = models.ImageField(upload_to='field_photos/', verbose_name="Foto")
     
     def __str__(self):
         return f"Foto de {self.field.field_name}"
@@ -67,4 +66,3 @@ class FieldPhoto(models.Model):
     class Meta:
         verbose_name = "Foto do campo"
         verbose_name_plural = "Fotos dos campos"
-        ordering = ['order_in_gallery']

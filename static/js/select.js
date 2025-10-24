@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchCitiesByStateId(stateId);
         fillCityOptions(cities);
         cityInput.disabled = false;
-        stateInput.disabled = true;
+        stateInput.readOnly = true;
         stateInput.value = option;
         stateOptions.classList.add('hidden');
     }
@@ -83,7 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     stateInput.addEventListener('focus', () => {
-        stateOptions.classList.remove('hidden');
+        if (!stateInput.readOnly) { 
+            stateOptions.classList.remove('hidden');
+        }
     })
 
     cityInput.addEventListener('focus', () => {
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!cityInput.contains(e.target) && !cityOptions.contains(e.target)) {
             if (!cityOptions.classList.contains('hidden')) {
                 cityInput.value = "";
-                fillStateOptions(cities);
+                fillCityOptions(cities);
             }
             cityOptions.classList.add('hidden');
         }
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (input.id === 'field-state') {
                 fillStateOptions(states);
-                stateInput.disabled = false;
+                stateInput.readOnly = false;
                 cityInput.disabled = true;
                 cityInput.value = "";
             }
