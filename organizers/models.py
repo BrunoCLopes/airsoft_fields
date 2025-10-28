@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import validate_email
 
 '''
 -- Table for Organizers of Fields
@@ -16,7 +17,7 @@ CREATE TABLE Organizers (
 # Create your models here.
 class Organizer(AbstractUser):
     username = models.CharField(max_length=150)
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100, validators=[validate_email], unique=True)
 
     def __str__(self):
         return self.get_username()

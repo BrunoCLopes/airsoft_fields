@@ -11,13 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const email = document.getElementById("signUp-email");
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        if (!emailRegex.test(email.value)) {
-            showFieldError(email.parentElement, email, 'Email inválido.');
+        if(!validateEmail(email)){
             hasErrors = true;
-        }else{
-            clearFieldError(email.parentElement, email);
         }
         
         const password = document.getElementById("signUp-password");

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 # Create your models here.
 
@@ -43,8 +44,11 @@ class Field(models.Model):
     address = models.TextField(verbose_name="Endereço")
     state = models.CharField(max_length=100, verbose_name="Estado")
     city = models.CharField(max_length=100, verbose_name="Cidade")
-    phone = models.CharField(max_length=20, verbose_name="Telefone")
-    description = models.TextField(verbose_name="Descrição")
+    phone = models.CharField(validators=[
+        MinLengthValidator(15),
+        MaxLengthValidator(15)],
+        verbose_name="Telefone")
+    description = models.TextField(validators=[MinLengthValidator(60)], verbose_name="Descrição")
     operating_hours = models.TextField(verbose_name="Horário de funcionamento")
     visible = models.BooleanField(default=True, verbose_name="Visível")
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Organizador")

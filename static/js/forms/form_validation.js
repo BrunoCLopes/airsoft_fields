@@ -16,11 +16,15 @@ function validateRequiredFields(form) {
           fileZone,
           `O campo ${label} é obrigatório.`
         );
+      } else {
+        clearFileError(formContainer, fileZone);
       }
     } else {
       if (!field.value.trim()) {
         isValid = false;
         showFieldError(formContainer, field, `O campo ${label} é obrigatório.`);
+      } else {
+        clearFieldError(formContainer, field);
       }
     }
   });
@@ -70,4 +74,17 @@ function createErrorElement(message) {
     "md:absolute"
   );
   return span;
+}
+
+function validateEmail(email) {
+  let isValid = true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (email.value.trim() && !emailRegex.test(email.value)) {
+    showFieldError(email.parentElement, email, "Email inválido.");
+    isValid = false;
+  } else if (email.value.trim()) {
+    clearFieldError(email.parentElement, email);
+  }
+  return isValid;
 }
