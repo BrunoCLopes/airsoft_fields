@@ -36,7 +36,8 @@ class Field(models.Model):
     FIELD_TYPE_CHOICES = [
         ('CQB', 'CQB'),
         ('MATA', 'Mata'),
-        ('MISTO', 'Misto')
+        ('MISTO', 'Misto'),
+        ('SPEED', 'Speed'),
     ]
 
     field_name = models.CharField(max_length=200, verbose_name="Nome do campo")

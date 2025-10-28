@@ -1,5 +1,9 @@
-{% extends "organizers/organizer_area/base.html" %} 
+{% extends "organizers/organizer_area/base.html" %}
+{% load static %} 
 {% block title %} - Meus Campos{% endblock %} 
+{% block script %}
+<script src="{% static 'js/forms/messages.js' %}"></script>
+{% endblock %}
 {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8">
   <header class="mb-8 mt-12 lg:mt-0 flex flex-row justify-between items-center">
@@ -35,66 +39,11 @@
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
-    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-gray-500 text-sm font-medium">Total de Campos</p>
-          <h3 class="text-3xl font-bold text-gray-800 mt-2">--</h3>
-        </div>
-        <div class="bg-indigo-100 p-3 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 text-indigo-600"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-gray-500 text-sm font-medium">Campos Ativos</p>
-          <h3 class="text-3xl font-bold text-green-600 mt-2">--</h3>
-        </div>
-        <div class="bg-green-100 p-3 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 text-green-600"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-gray-500 text-sm font-medium">Visualizações</p>
-          <h3 class="text-3xl font-bold text-gray-800 mt-2">--</h3>
+          <h3 class="text-3xl font-bold text-purple-500 mt-2">--</h3>
         </div>
         <div class="bg-purple-100 p-3 rounded-full">
           <svg
@@ -115,6 +64,45 @@
               stroke-linejoin="round"
               d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
+          </svg>
+        </div>
+      </div>
+    </div>
+       <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-gray-500 text-sm font-medium">Favoritos</p>
+          <h3 class="text-3xl font-bold text-red-600 mt-2">--</h3>
+          <p class="text-xs text-gray-500 mt-1">Campos salvos por jogadores</p>
+        </div>
+        <div class="bg-red-100 p-3 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-8 text-red-600"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-gray-500 text-sm font-medium">Avaliação Média</p>
+          <h3 class="text-3xl font-bold text-yellow-400">--</h3>
+          <p class="text-xs text-gray-500 mt-1">-- avaliações totais</p>
+        </div>
+        <div class="bg-yellow-100 p-3 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-yellow-400">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
           </svg>
         </div>
       </div>
@@ -181,228 +169,151 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <img
-                  class="h-10 w-10 rounded object-cover"
-                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop"
-                  alt="Campo"
-                />
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">
-                    Campo Alpha
+          {% if userFields %}
+            {% for field in userFields %}
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <img
+                      class="h-10 w-10 rounded object-cover"
+                      src="{{ field.photos.first.photo.url }}"
+                      alt="Campo"
+                    />
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{ field.field_name }}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-600 text-white"
-              >
-                CQB
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              São Paulo, SP
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-              >
-                Ativo
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <div class="flex items-center justify-center gap-2">
-                <button
-                  class="text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center">
+                  <span
+                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full text-white
+                    {% if field.field_type == 'MISTO' %}
+                    bg-yellow-500
+                    {% elif field.field_type == 'MATA' %}
+                    bg-green-600
+                    {% elif field.field_type == 'CQB' %}
+                    bg-blue-600
+                    {% elif field.field_type == 'SPEED' %}
+                    bg-red-600
+                    {% endif %}"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                    />
-                  </svg>
-                </button>
-                <button
-                  class="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
+                    {{ field.get_field_type_display }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{  field.city }}, {{ field.state }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center">
+                  <span
+                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
+                    {% if field.visible == True %}
+                     bg-green-100 text-green-800
+                    {% else %}
+                     bg-red-100 text-red-800
+                    {% endif %}
+                    "
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <img
-                  class="h-10 w-10 rounded object-cover"
-                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=100&h=100&fit=crop"
-                  alt="Campo"
-                />
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">
-                    Campo Woodland
+                    {% if field.visible == True %}
+                      Ativo
+                    {% else %}
+                      Inativo
+                    {% endif %}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <div class="flex items-center justify-center gap-2">
+                    <button
+                      class="text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                      </svg>
+                    </button>
                   </div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-600 text-white"
-              >
-                Mata
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              Rio de Janeiro, RJ
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-              >
-                Inativo
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <div class="flex items-center justify-center gap-2">
-                <button
-                  class="text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                    />
-                  </svg>
-                </button>
-                <button
-                  class="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <img
-                  class="h-10 w-10 rounded object-cover"
-                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop"
-                  alt="Campo"
-                />
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">
-                    Campo Alpha
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-600 text-white"
-              >
-                Ambos
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              São Paulo, SP
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              <span
-                class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-              >
-                Ativo
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <div class="flex items-center justify-center gap-2">
-                <button
-                  class="text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                    />
-                  </svg>
-                </button>
-                <button
-                  class="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                Você ainda não adicionou nenhum campo. Clique em "Adicionar Campo" para começar.
+              </td>
+            </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>
   </div>
+
+<div id="delete-modal" class="fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+    <!-- Header -->
+    <div class="p-4 sm:p-6 border-b border-gray-200">
+      <div class="flex items-start gap-3">
+        <div class="bg-red-100 p-2 sm:p-3 rounded-full shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 sm:size-6 text-red-600">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-base sm:text-lg font-semibold text-gray-900">Confirmar Exclusão</h3>
+          <p class="text-xs sm:text-sm text-gray-500 mt-1">Esta ação não pode ser desfeita</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="p-4 sm:p-6">
+      <p class="text-xs sm:text-sm text-gray-500">Todas as fotos e informações associadas à este campo serão permanentemente removidas.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
+      <button
+        data-modal-close
+        class="w-full sm:w-auto px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
+      >
+        Cancelar
+      </button>
+      <button
+        data-modal-confirm
+        class="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:cursor-pointer transition-colors font-medium text-sm"
+      >
+        Excluir
+      </button>
+    </div>
+  </div>
+</div>
 </main>
 {% endblock %}

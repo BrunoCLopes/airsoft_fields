@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .. import views
+from organizers.views import organizer_area as views
 
 urlpatterns = [
     path("meus_campos/", views.my_fields, name="my_fields"),
