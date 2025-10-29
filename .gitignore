@@ -1,7 +1,8 @@
 # Node
 node_modules/
 npm-debug.log*
-package-lock.json
+yarn-debug.log*
+yarn-error.log*
 
 # Python
 __pycache__/
@@ -9,15 +10,20 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
-venv/
 *.egg-info/
 dist/
 build/
 
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
 # Django
 *.log
-db.sqlite3
+*.pot
+local_settings.py
 staticfiles/
 
 # IDE
@@ -25,3 +31,13 @@ staticfiles/
 .idea/
 *.swp
 *.swo
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+
+# Coverage
+htmlcov/
+.coverage
+.pytest_cache/
