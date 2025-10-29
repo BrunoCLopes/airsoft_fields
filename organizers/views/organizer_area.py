@@ -9,6 +9,19 @@ def my_fields(request):
     return render(request, "organizers/organizer_area/my_fields.html", {'userFields': userFields})
 
 @login_required()
+def delete_field(request):
+    if request.method == 'POST':
+        try:
+            field_id = request.POST.get('field-id')
+            field = Field.objects.get(id=field_id, organizer=request.user)
+            field.delete()
+            messages.success(request, f'O campo {field} foi excluído com sucesso.')
+            return redirect('my_fields')
+        except Exception:
+            messages.error(request, 'Erro ao excluir o campo, tente novamente mais tarde.')
+            return redirect('my_fields')
+
+@login_required()
 def new_field(request):
     if request.method == 'POST':
         try:

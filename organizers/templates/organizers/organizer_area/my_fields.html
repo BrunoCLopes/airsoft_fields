@@ -2,7 +2,9 @@
 {% load static %} 
 {% block title %} - Meus Campos{% endblock %} 
 {% block script %}
-<script src="{% static 'js/forms/messages.js' %}"></script>
+<script src="{% static 'js/messages.js' %}"></script>
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/my_fields/delete_modal.js' %}"></script>
 {% endblock %}
 {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8">
@@ -17,12 +19,12 @@
                 <div class="flex items-center justify-center">
                   <div>
                     <div class="flex items-center p-4 pt-2 pb-2 text-sm rounded-lg font-medium message-alert
-                  {% if message.tags == 'success' %}
-                    text-green-800 bg-green-50
-                  {% elif message.tags == 'error' %}
-                    text-red-800 bg-red-50
-                  {% endif %}
-                    " role="alert">
+                      {% if message.tags == 'success' %}
+                        text-green-800 bg-green-50
+                      {% elif message.tags == 'error' %}
+                        text-red-800 bg-red-50
+                      {% endif %}
+                      " role="alert">
                       <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                       </svg>
@@ -243,7 +245,9 @@
                       </svg>
                     </button>
                     <button
-                      class="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
+                    data-field-name="{{ field.field_name }}"
+                    data-field-id="{{ field.id }}"
+                    class="delete-field text-red-600 hover:text-red-900 p-1 hover:bg-red-50 hover:cursor-pointer rounded-full transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -276,8 +280,8 @@
     </div>
   </div>
 
-<div id="delete-modal" class="fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+<div id="delete-modal" class="modal-bg close-modal hidden fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center p-4">
+  <div class="modal-container bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
     <!-- Header -->
     <div class="p-4 sm:p-6 border-b border-gray-200">
       <div class="flex items-start gap-3">
@@ -295,23 +299,28 @@
 
     <!-- Body -->
     <div class="p-4 sm:p-6">
+      <p class="text-sm sm:text-base text-gray-700 mb-2">Tem certeza de que deseja excluir o campo "<span id="field-to-delete" class="font-medium"></span>"?</p>
       <p class="text-xs sm:text-sm text-gray-500">Todas as fotos e informações associadas à este campo serão permanentemente removidas.</p>
     </div>
 
     <!-- Footer -->
     <div class="p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
-      <button
-        data-modal-close
-        class="w-full sm:w-auto px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
-      >
-        Cancelar
-      </button>
-      <button
-        data-modal-confirm
-        class="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:cursor-pointer transition-colors font-medium text-sm"
-      >
-        Excluir
-      </button>
+      <form method="POST" action="{% url 'delete_field' %}">
+        {% csrf_token %}
+        <input type="hidden" name="field-id" id="field-id-to-delete" value="">
+        <button
+        type="button"
+          class="close-modal w-full sm:w-auto px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:cursor-pointer transition-colors font-medium text-sm"
+        >
+          Excluir
+        </button>
+      </form>
     </div>
   </div>
 </div>

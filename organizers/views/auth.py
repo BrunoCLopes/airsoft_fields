@@ -33,7 +33,7 @@ def signIn(request):
         try:
             email = request.POST.get('signIn-email')
             password = request.POST.get('signIn-password')
-
+            
             organizer = authenticate(request, username=email, password=password)
 
             if organizer is not None:
