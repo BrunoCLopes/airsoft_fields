@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const photoInput = document.getElementById('field-photo');
-    const imagePreview = document.getElementById('image-preview');
-    const previewImg = document.getElementById('preview-img');
+    const imagePreview = document.getElementById('image-preview-container');
+    const previewImg = document.getElementById('preview-image');
     const removeImageBtn = document.getElementById('remove-image');
 
     photoInput.addEventListener('change', (e) => {

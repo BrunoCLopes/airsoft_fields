@@ -7,4 +7,5 @@ urlpatterns = [
     path("novo_campo/", views.new_field, name="new_field"),
     path("meu_perfil/", views.my_profile, name="my_profile"),
     path("excluir_campo/", views.delete_field, name="delete_field"),
+    path("editar_campo/", views.edit_field, name="edit_field"),
 ]

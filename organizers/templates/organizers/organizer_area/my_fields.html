@@ -6,7 +6,6 @@
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/my_fields/delete_modal.js' %}"></script>
 <script src="{% static 'js/my_fields/edit_modal.js' %}"></script>
-<script src="{% static 'js/select.js' %}"></script>
 <script src="{% static 'js/field_image.js' %}"></script>
 <script src="{% static 'js/forms/form_validation.js' %}"></script>
 <script src="{% static 'js/forms/form_field.js' %}"></script>
@@ -28,6 +27,8 @@
                         text-green-800 bg-green-50
                       {% elif message.tags == 'error' %}
                         text-red-800 bg-red-50
+                      {% elif message.tags == 'info' %}
+                        text-blue-800 bg-blue-50
                       {% endif %}
                       " role="alert">
                       <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -45,76 +46,82 @@
     </div>
   </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
-        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-gray-500 text-sm font-medium">Visualizações</p>
-          <h3 class="text-3xl font-bold text-purple-500 mt-2">--</h3>
-        </div>
-        <div class="bg-purple-100 p-3 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 text-purple-600"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            />
-          </svg>
-        </div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
+  <!-- Card: Visualizações -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-500 text-sm font-medium">Visualizações</p>
+        <h3 class="text-3xl font-bold text-purple-500 mt-2">--</h3>
+        <p class="text-xs text-gray-500 mt-1">Total de visualizações</p>
       </div>
-    </div>
-       <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-gray-500 text-sm font-medium">Favoritos</p>
-          <h3 class="text-3xl font-bold text-red-600 mt-2">--</h3>
-          <p class="text-xs text-gray-500 mt-1">Campos salvos por jogadores</p>
-        </div>
-        <div class="bg-red-100 p-3 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 text-red-600"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-gray-500 text-sm font-medium">Avaliação Média</p>
-          <h3 class="text-3xl font-bold text-yellow-400">--</h3>
-          <p class="text-xs text-gray-500 mt-1">-- avaliações totais</p>
-        </div>
-        <div class="bg-yellow-100 p-3 rounded-full">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-yellow-400">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-          </svg>
-        </div>
+      <div class="bg-purple-100 p-3 rounded-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-8 text-purple-600"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          />
+        </svg>
       </div>
     </div>
   </div>
+
+  <!-- Card: Favoritos -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-500 text-sm font-medium">Favoritos</p>
+        <h3 class="text-3xl font-bold text-red-600 mt-2">--</h3>
+        <p class="text-xs text-gray-500 mt-1">Campos salvos por jogadores</p>
+      </div>
+      <div class="bg-red-100 p-3 rounded-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-8 text-red-600"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card: Avaliação Média -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-500 text-sm font-medium">Avaliação Média</p>
+        <h3 class="text-3xl font-bold text-yellow-400 mt-2">--</h3>
+        <p class="text-xs text-gray-500 mt-1">-- avaliações totais</p>
+      </div>
+      <div class="bg-yellow-100 p-3 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-yellow-400">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
 
   <div class="bg-white rounded-lg shadow-md border border-gray-200">
     <div
@@ -229,6 +236,17 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div class="flex items-center justify-center gap-2">
                     <button
+                      data-field-id="{{ field.id }}"
+                      data-field-status="{{ field.visible }}"
+                      data-field-name="{{ field.field_name }}"
+                      data-field-type="{{ field.field_type }}"
+                      data-field-phone="{{ field.phone }}"
+                      data-field-address="{{ field.address }}"
+                      data-field-state="{{ field.state }}"
+                      data-field-city="{{ field.city }}"
+                      data-field-description="{{ field.description }}"
+                      data-field-hours="{{ field.operating_hours }}"
+                      data-field-photo="{{ field.photos.first.photo.url }}"
                       class="edit-field text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
                     >
                       <svg
@@ -309,7 +327,7 @@
       <div class="p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
         <form method="POST" action="{% url 'delete_field' %}">
           {% csrf_token %}
-          <input type="hidden" name="field-id" id="field-id-to-delete" value="">
+          <input type="hidden" name="field-id-to-delete" id="field-id-to-delete" value="">
           <button
           type="button"
             class="close-modal w-full sm:w-auto px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
@@ -353,11 +371,55 @@
       </div>
 
       <!-- Form -->
-      <form method="POST" id="field-form" enctype="multipart/form-data">
+      <form method="POST" action="{% url 'edit_field' %}" id="field-form" enctype="multipart/form-data">
         {% csrf_token %}
-        
+        <input type="hidden" name="field-id-to-edit" id="field-id-to-edit" value="">
         <!-- Body -->
         <div class="p-4 sm:p-6 space-y-6">
+          <!-- Section: Status -->
+          <div>
+            <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+              Status do Campo
+            </h4>
+            <div class="form-item relative">
+              <label class="block text-sm font-semibold text-gray-700 mb-3">
+                Visibilidade
+              </label>
+              <div class="flex items-center gap-6">
+                <!-- Ativo -->
+                <label class="flex items-center gap-1.5 cursor-pointer group">
+                  <input
+                    type="radio"
+                    id="field-status-active"
+                    name="edit-field-status"
+                    value="True"
+                    class="w-4 h-4 cursor-pointer accent-green-600"
+                  />
+                  <span class="text-sm text-gray-700 transition-colors font-medium">
+                    Ativo
+                  </span>
+                </label>
+
+                <!-- Inativo -->
+                <label class="flex items-center gap-1.5 cursor-pointer group">
+                  <input
+                    type="radio"
+                    id="field-status-inactive"
+                    name="edit-field-status"
+                    value="False"
+                    class="w-4 h-4 cursor-pointer accent-red-600"
+                  />
+                  <span class="text-sm text-gray-700 transition-colors font-medium">
+                    Inativo
+                  </span>
+                </label>
+              </div>
+              <p class="text-xs text-gray-500 mt-2">
+                Campos inativos não aparecem na busca pública
+              </p>
+            </div>
+          </div>
+
           <!-- Section: Informações Básicas -->
           <div>
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
@@ -366,13 +428,13 @@
             <div class="space-y-4">
               <!-- Nome do Campo -->
               <div class="form-item relative">
-                <label for="edit-field-name" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                <label for="field-name" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Nome do Campo
                 </label>
                 <input
                   type="text"
-                  id="edit-field-name"
-                  name="field-name"
+                  id="field-name"
+                  name="edit-field-name"
                   class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                   placeholder="Ex: Campo Tactical Alpha"
                 />
@@ -382,12 +444,12 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Tipo de Campo -->
                 <div class="form-item relative">
-                  <label for="edit-field-type" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                  <label for="field-type" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Tipo de Campo
                   </label>
                   <select
-                    id="edit-field-type"
-                    name="field-type"
+                    id="field-type"
+                    name="edit-field-type"
                     class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                   >
                     <option value="">Selecione</option>
@@ -400,100 +462,16 @@
 
                 <!-- Telefone -->
                 <div class="form-item relative">
-                  <label for="edit-field-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                  <label for="field-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Telefone
                   </label>
                   <input
                     type="tel"
-                    id="edit-field-phone"
-                    name="field-phone"
+                    id="field-phone"
+                    name="edit-field-phone"
                     class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                     placeholder="(XX) XXXXX-XXXX"
                   />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section: Localização -->
-          <div>
-            <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-              Localização
-            </h4>
-            <div class="space-y-4">
-              <!-- Endereço -->
-              <div class="form-item relative">
-                <label for="edit-field-address" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Endereço Completo
-                </label>
-                <input
-                  type="text"
-                  id="edit-field-address"
-                  name="field-address"
-                  class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
-                  placeholder="Rua, número, bairro"
-                />
-              </div>
-
-              <!-- Estado e Cidade -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Estado -->
-                <div class="form-item relative">
-                  <label for="edit-field-state" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                    Estado
-                  </label>
-                  <div class="flex items-center">
-                    <input
-                      id="edit-field-state"
-                      name="field-state"
-                      type="text"
-                      class="required w-full px-3 py-2 pr-8 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
-                      placeholder="Digite o estado..."
-                      autocomplete="off"
-                    />
-                    <button
-                      type="button"
-                      class="clear-filter absolute right-1 text-gray-500 rounded-full p-1 hover:cursor-pointer hover:text-gray-700 hover:bg-gray-100"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div
-                    id="edit-state-options"
-                    class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-40 overflow-y-auto z-10 hidden mt-1"
-                  ></div>
-                </div>
-
-                <!-- Cidade -->
-                <div class="form-item relative">
-                  <label for="edit-field-city" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                    Cidade
-                  </label>
-                  <div class="flex items-center">
-                    <input
-                      disabled
-                      id="edit-field-city"
-                      name="field-city"
-                      type="text"
-                      class="required w-full px-3 py-2 pr-8 outline outline-gray-300 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
-                      placeholder="Digite a cidade..."
-                      autocomplete="off"
-                    />
-                    <button
-                      type="button"
-                      class="clear-filter absolute right-1 text-gray-500 rounded-full p-1 hover:cursor-pointer hover:text-gray-700 hover:bg-gray-100"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div
-                    id="edit-city-options"
-                    class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-40 overflow-y-auto z-10 hidden mt-1"
-                  ></div>
                 </div>
               </div>
             </div>
@@ -507,12 +485,12 @@
             <div class="space-y-4">
               <!-- Descrição -->
               <div class="form-item relative">
-                <label for="edit-field-description" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                <label for="field-description" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Descrição
                 </label>
                 <textarea
-                  id="edit-field-description"
-                  name="field-description"
+                  id="field-description"
+                  name="edit-field-description"
                   rows="3"
                   class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none text-sm"
                   placeholder="Descreva seu campo..."
@@ -526,8 +504,8 @@
                 </label>
                 <input
                   type="text"
-                  id="edit-field-hours"
-                  name="field-hours"
+                  id="field-hours"
+                  name="edit-field-hours"
                   class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                   placeholder="Ex: Sábados e Domingos, 8h às 18h"
                 />
@@ -540,7 +518,7 @@
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               Imagem do Campo
             </h4>
-            <div class="form-item">
+            <div class="form-item relative">
               <label for="field-photo" class="block text-sm font-semibold text-gray-700 mb-1.5">
                 Foto do Campo
               </label>
@@ -573,13 +551,13 @@
                 name="edit-field-photo"
                 type="file"
                 accept="image/*"
-                class="sr-only"
+                class="required sr-only"
               />
 
               <!-- Image Preview -->
-              <div id="image-preview" class="mt-3 hidden">
+              <div id="image-preview-container" class="mt-3 hidden">
                 <img
-                  id="preview-img"
+                  id="preview-image"
                   src=""
                   alt="Preview"
                   class="max-h-48 rounded-lg mx-auto"

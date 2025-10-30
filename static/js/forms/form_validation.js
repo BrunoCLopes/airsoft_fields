@@ -8,8 +8,9 @@ function validateRequiredFields(form) {
 
     if (field.type === "file") {
       const fileZone = formContainer.querySelector(".file-zone");
-
-      if (field.files.length === 0) {
+      const imagePreviewContainer = formContainer.querySelector("#image-preview-container");
+      console.log(imagePreviewContainer);
+      if (imagePreviewContainer.classList.contains("hidden")) {
         isValid = false;
         showFileError(
           formContainer,
