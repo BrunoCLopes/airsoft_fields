@@ -5,6 +5,11 @@
 <script src="{% static 'js/messages.js' %}"></script>
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/my_fields/delete_modal.js' %}"></script>
+<script src="{% static 'js/my_fields/edit_modal.js' %}"></script>
+<script src="{% static 'js/select.js' %}"></script>
+<script src="{% static 'js/field_image.js' %}"></script>
+<script src="{% static 'js/forms/form_validation.js' %}"></script>
+<script src="{% static 'js/forms/form_field.js' %}"></script>
 {% endblock %}
 {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8">
@@ -116,10 +121,7 @@
       class="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
     >
       <h2 class="text-xl font-semibold text-gray-800">Lista de Campos</h2>
-      <a
-        href={% url 'new_field' %}
-        class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-      >
+      <a href={% url 'new_field' %} class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -227,7 +229,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div class="flex items-center justify-center gap-2">
                     <button
-                      class="text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
+                      class="edit-field text-indigo-600 hover:text-indigo-900 p-1 hover:bg-indigo-50 hover:cursor-pointer rounded-full transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -325,19 +327,19 @@
     </div>
   </div>
 
-  <div id="edit-modal" class="modal-bg close-modal fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center p-4">
+  <div id="edit-modal" class="modal-bg close-modal hidden fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[75vh] overflow-y-auto scrollbar-hidden mx-4">
       <!-- Header -->
       <div class="p-4 sm:p-6 border-b border-gray-200">
         <div class="flex items-center gap-3">
           <div class="bg-indigo-100 p-2 sm:p-3 rounded-full shrink-0">
             <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-5 text-indigo-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5 text-indigo-600"
             >
               <path
                 stroke-linecap="round"
@@ -348,20 +350,22 @@
           </div>
           <h3 class="text-base sm:text-lg font-semibold text-gray-900">Edite seu Campo</h3>
         </div>
-      </div>  
+      </div>
 
-      <!-- Body -->
-      <div class="p-4 sm:p-6 space-y-6">
-        <form method="POST" id="edit-field-form" enctype="multipart/form-data">
-          {% csrf_token %}
+      <!-- Form -->
+      <form method="POST" id="field-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Body -->
+        <div class="p-4 sm:p-6 space-y-6">
           <!-- Section: Informações Básicas -->
-          <div class="mb-6">
+          <div>
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               Informações Básicas
             </h4>
             <div class="space-y-4">
               <!-- Nome do Campo -->
-              <div class="form-item">
+              <div class="form-item relative">
                 <label for="edit-field-name" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Nome do Campo
                 </label>
@@ -376,7 +380,8 @@
 
               <!-- Tipo e Telefone -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="form-item">
+                <!-- Tipo de Campo -->
+                <div class="form-item relative">
                   <label for="edit-field-type" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Tipo de Campo
                   </label>
@@ -393,7 +398,8 @@
                   </select>
                 </div>
 
-                <div class="form-item">
+                <!-- Telefone -->
+                <div class="form-item relative">
                   <label for="edit-field-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Telefone
                   </label>
@@ -410,13 +416,13 @@
           </div>
 
           <!-- Section: Localização -->
-          <div class="mb-6">
+          <div>
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               Localização
             </h4>
             <div class="space-y-4">
               <!-- Endereço -->
-              <div class="form-item">
+              <div class="form-item relative">
                 <label for="edit-field-address" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Endereço Completo
                 </label>
@@ -431,6 +437,7 @@
 
               <!-- Estado e Cidade -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Estado -->
                 <div class="form-item relative">
                   <label for="edit-field-state" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Estado
@@ -459,6 +466,7 @@
                   ></div>
                 </div>
 
+                <!-- Cidade -->
                 <div class="form-item relative">
                   <label for="edit-field-city" class="block text-sm font-semibold text-gray-700 mb-1.5">
                     Cidade
@@ -469,7 +477,7 @@
                       id="edit-field-city"
                       name="field-city"
                       type="text"
-                      class="required w-full px-3 py-2 outline outline-gray-300 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                      class="required w-full px-3 py-2 pr-8 outline outline-gray-300 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                       placeholder="Digite a cidade..."
                       autocomplete="off"
                     />
@@ -492,13 +500,13 @@
           </div>
 
           <!-- Section: Detalhes -->
-          <div class="mb-6">
+          <div>
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               Detalhes do Campo
             </h4>
             <div class="space-y-4">
               <!-- Descrição -->
-              <div class="form-item">
+              <div class="form-item relative">
                 <label for="edit-field-description" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Descrição
                 </label>
@@ -511,8 +519,8 @@
                 ></textarea>
               </div>
 
-              <!-- Horário de Funcionamento -->
-              <div class="form-item">
+              <!-- Horário -->
+              <div class="form-item relative">
                 <label for="edit-field-hours" class="block text-sm font-semibold text-gray-700 mb-1.5">
                   Horário de Funcionamento
                 </label>
@@ -528,17 +536,18 @@
           </div>
 
           <!-- Section: Foto -->
-          <div class="mb-6">
+          <div>
             <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               Imagem do Campo
             </h4>
             <div class="form-item">
-              <label for="edit-field-photo" class="block text-sm font-semibold text-gray-700 mb-1.5">
+              <label for="field-photo" class="block text-sm font-semibold text-gray-700 mb-1.5">
                 Foto do Campo
               </label>
 
+              <!-- Upload Zone -->
               <label
-                for="edit-field-photo"
+                for="field-photo"
                 class="file-zone mt-2 flex justify-center px-4 py-4 outline-2 outline-gray-300 outline-dashed rounded-lg hover:outline-indigo-400 hover:bg-indigo-50 transition-[background-color] cursor-pointer"
               >
                 <div class="space-y-1 text-center">
@@ -558,25 +567,26 @@
                 </div>
               </label>
 
+              <!-- Hidden Input -->
               <input
-                id="edit-field-photo"
-                name="field-photo"
+                id="field-photo"
+                name="edit-field-photo"
                 type="file"
                 accept="image/*"
                 class="sr-only"
               />
 
-              <!-- Preview da imagem atual -->
-              <div id="edit-image-preview" class="mt-3 hidden">
+              <!-- Image Preview -->
+              <div id="image-preview" class="mt-3 hidden">
                 <img
-                  id="edit-preview-img"
+                  id="preview-img"
                   src=""
                   alt="Preview"
                   class="max-h-48 rounded-lg mx-auto"
                 />
                 <button
                   type="button"
-                  id="edit-remove-image"
+                  id="remove-image"
                   class="mt-2 text-xs text-red-600 hover:text-red-800 hover:cursor-pointer font-semibold block mx-auto"
                 >
                   Remover imagem
@@ -584,11 +594,10 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <!-- Footer -->
-        <div class="bottom-0 bg-white p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
+        <div class="bg-white p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
           <button
             type="button"
             class="close-modal w-full sm:w-auto px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
@@ -603,7 +612,6 @@
           </button>
         </div>
       </form>
-      </div>
     </div>
   </div>
 </main>

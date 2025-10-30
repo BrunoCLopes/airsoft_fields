@@ -5,7 +5,7 @@
 <script src="{% static 'js/select.js' %}"></script>
 <script src="{% static 'js/field_image.js' %}"></script>
 <script src="{% static 'js/forms/form_validation.js' %}"></script>
-<script src="{% static 'js/forms/new_field.js' %}"></script>
+<script src="{% static 'js/forms/form_field.js' %}"></script>
 {% endblock %} 
 {% block content %}
 <main class="lg:ml-64 min-h-screen p-4 md:p-8 flex flex-col items-center">
@@ -41,7 +41,7 @@
   </header>
 
   <!-- Form -->
-  <form method="POST" id="new-field-form" action="{% url 'new_field' %}" enctype="multipart/form-data"
+  <form method="POST" id="field-form" action="{% url 'new_field' %}" enctype="multipart/form-data"
     class="bg-white rounded-lg shadow-md border border-gray-200 p-6 md:p-8 w-full max-w-4xl"
   >
   {% csrf_token %}

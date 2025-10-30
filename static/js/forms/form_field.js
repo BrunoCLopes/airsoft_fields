@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const signInForm = document.getElementById("new-field-form");
+    const fieldForm = document.getElementById("field-form");
     const phoneInput = document.getElementById("field-phone");
     const description = document.getElementById("field-description");
 
@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    signInForm.addEventListener("submit", (e) => {
+    fieldForm.addEventListener("submit", (e) => {
         e.preventDefault();
         
         let hasErrors = false;
 
-        if(!validateRequiredFields(signInForm)){
+        if(!validateRequiredFields(fieldForm)){
             hasErrors = true;
         };
 
@@ -39,6 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (hasErrors) return;
 
-        signInForm.submit();
+        fieldForm.submit();
     });
 });
