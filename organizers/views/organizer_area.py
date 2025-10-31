@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from fields.models import Field, FieldPhoto
 from django.contrib.auth.decorators import login_required
+from organizers.validators import validate_state, validate_city
 import os
 
 @login_required()
@@ -17,6 +18,7 @@ def new_field(request):
             field_type = request.POST.get('field-type')
             address = request.POST.get('field-address')
             state = request.POST.get('field-state')
+            state_abbreviation = request.POST.get('state-abbreviation')
             city = request.POST.get('field-city')
             phone = request.POST.get('field-phone')
             description = request.POST.get('field-description')
@@ -24,11 +26,18 @@ def new_field(request):
             field_photo = request.FILES.get('field-photo')
             user = request.user
 
+            if not validate_state(state, state_abbreviation):
+                raise Exception()
+            
+            if not validate_city(state_abbreviation, city):
+                raise Exception()
+
             new_field = Field.objects.create(
                 field_name=field_name,
                 field_type=field_type,
                 address=address,
                 state=state,
+                state_abbreviation=state_abbreviation,
                 city=city,
                 phone=phone,
                 description=description,
@@ -45,7 +54,7 @@ def new_field(request):
             return redirect('my_fields') 
         
         except Exception:
-            messages.error(request, 'Erro ao criar o campo, tente novamente mais tarde.')
+            messages.error(request, f'Erro ao criar o campo, tente novamente mais tarde.')
             return redirect('my_fields')
 
     return render(request, 'organizers/organizer_area/new_field.html')

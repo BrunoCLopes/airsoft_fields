@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let states = [];
     let cities = [];
     const stateInput = document.querySelector("#field-state");
+    const stateAbbreviationInput = document.querySelector("#state-abbreviation");
     const stateOptions = document.querySelector("#state-options");
     const cityInput = document.querySelector("#field-city");
     const cityOptions = document.querySelector("#city-options");
@@ -11,16 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome');
             const data = await response.json();
-            states = data.map(state => ({ name: state.nome, id: state.id }));
+            states = data.map(state => ({ name: state.nome, abbreviation: state.sigla }));
             fillStateOptions(states);
         } catch (error) {
             console.error('Erro ao buscar estados:', error);
         }
     }
 
-    async function fetchCitiesByStateId(stateId) {
+    async function fetchCitiesByStateId(state_abbreviation) {
         try {
-            const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/municipios`);
+            const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state_abbreviation}/municipios`);
             const data = await response.json();
             cities = data.map(city => city.nome);
         } catch (error) {
@@ -28,17 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function selectedStateOption(option, stateId) {
-        await fetchCitiesByStateId(stateId);
+    async function selectedStateOption(state, abbreviation) {
+        await fetchCitiesByStateId(abbreviation);
         fillCityOptions(cities);
         cityInput.disabled = false;
         stateInput.readOnly = true;
-        stateInput.value = option;
+        stateInput.value = state;
+        stateAbbreviationInput.value = abbreviation;
         stateOptions.classList.add('hidden');
     }
 
-    function selectedCityOption(option) {
-        cityInput.value = option;
+    function selectedCityOption(city) {
+        cityInput.value = city;
         cityOptions.classList.add('hidden');
     }
 
@@ -46,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
         stateOptions.innerHTML = "";
         states.forEach(state => {
             const option = document.createElement('div');
-            option.textContent = state.name;
+            option.textContent = `${state.name} (${state.abbreviation})`;
             option.classList.add('px-3', 'py-2', 'hover:bg-indigo-500', 'hover:text-white');
-            option.addEventListener('click', () => selectedStateOption(state.name, state.id));
+            option.addEventListener('click', () => selectedStateOption(state.name, state.abbreviation));
             stateOptions.appendChild(option);
         });
     }

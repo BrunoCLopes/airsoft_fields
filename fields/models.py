@@ -44,6 +44,7 @@ class Field(models.Model):
     field_type = models.CharField(max_length=10, choices=FIELD_TYPE_CHOICES, verbose_name="Tipo de Campo")
     address = models.TextField(verbose_name="Endereço")
     state = models.CharField(max_length=100, verbose_name="Estado")
+    state_abbreviation = models.CharField(max_length=2, verbose_name="Abreviação do Estado")
     city = models.CharField(max_length=100, verbose_name="Cidade")
     phone = models.CharField(validators=[
         MinLengthValidator(15),
