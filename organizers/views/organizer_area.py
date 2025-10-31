@@ -7,8 +7,8 @@ import os
 
 @login_required()
 def my_fields(request):
-    userFields = Field.objects.filter(organizer=request.user)
-    return render(request, "organizers/organizer_area/my_fields.html", {'userFields': userFields})
+    user_fields = Field.objects.filter(organizer=request.user)
+    return render(request, "organizers/organizer_area/my_fields.html", {'user_fields': user_fields})
 
 @login_required()
 def new_field(request):
