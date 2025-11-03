@@ -219,7 +219,7 @@
               class="w-full h-48 object-cover"
             />
             <div
-              class="absolute top-2 right-2 bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-semibold
+              class="absolute top-2 left-2 text-white px-2 py-1 rounded-full text-xs font-semibold
               {% if field.field_type == 'MISTO' %}
               bg-yellow-500
               {% elif field.field_type == 'MATA' %}
@@ -277,6 +277,119 @@
     {% else %}
       <p class="text-center col-span-3 text-gray-500">Nenhum campo encontrado.</p>
     {% endif %}
+  </div>
+</div>
+<div id="details-modal" class="modal-bg close-modal fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto scrollbar-hidden mx-4">
+    <!-- Header -->
+    <div class="">
+      <div class="relative">
+        <img
+          src="media\field_photos\1000w_q95.webp"
+          alt="Campo de Airsoft"
+          class="w-full h-52 object-cover"  
+        />
+        <div
+          class="absolute top-2 left-2 text-white px-2 py-1 rounded-full text-sm font-semibold bg-indigo-600"
+        >
+          CQB
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="p-4 sm:p-6 space-y-6">
+      <!-- Section: Informações Básicas -->
+      <div>
+        <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+          Informações Básicas
+        </h4>
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Nome do Campo -->
+            <div class="form-item relative">
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Nome do Campo
+              </label>
+              <p class="text-gray-800 text-sm" id="detail-field-name">-</p>
+            </div>
+            <!-- Telefone -->
+            <div class="form-item relative">
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Telefone
+              </label>
+              <p class="text-gray-800 text-sm" id="detail-field-phone">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Localização -->
+      <div>
+        <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+          Localização
+        </h4>
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Estado -->
+            <div class="form-item relative">
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Estado
+              </label>
+              <p class="text-gray-800 text-sm" id="detail-field-state">-</p>
+            </div>
+
+            <!-- Cidade -->
+            <div class="form-item relative">
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Cidade
+              </label>
+              <p class="text-gray-800 text-sm" id="detail-field-city">-</p>
+            </div>
+        </div>
+          <!-- Endereço -->
+          <div class="form-item relative">
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+              Endereço
+            </label>
+            <p class="text-gray-800 text-sm" id="detail-field-address">-</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Detalhes -->
+      <div>
+        <h4 class="text-base font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+          Detalhes do Campo
+        </h4>
+        <div class="space-y-4">
+          <!-- Descrição -->
+          <div class="form-item relative">
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+              Descrição
+            </label>
+            <p class="text-gray-800 text-sm" id="detail-field-description">-</p>
+          </div>
+
+          <!-- Horário -->
+          <div class="form-item relative">
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+              Horário de Funcionamento
+            </label>
+            <p class="text-gray-800 text-sm" id="detail-field-hours">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="bg-white p-4 sm:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
+      <button
+        type="button"
+        class="close-modal w-full sm:w-auto px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:cursor-pointer transition-colors font-medium text-sm"
+      >
+        Fechar
+      </button>
+    </div>
   </div>
 </div>
 {% endblock %}
