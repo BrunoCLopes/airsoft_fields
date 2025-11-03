@@ -12,6 +12,9 @@ def signUp(request):
             password = request.POST.get('signUp-password')
             confirmPassword = request.POST.get('signUp-confirm-password')
  
+            if Organizer.objects.filter(email=email).exists():
+                return render(request, 'organizers/auth/signUp.html', {'emailAlreadyExists': 'Este e-mail já está cadastrado.'})
+
             if password == confirmPassword:
                 user = Organizer.objects.create_user(username=username, email=email, password=password)
                 user.is_active = False
