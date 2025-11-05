@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const fieldForm = document.getElementById("field-form");
-    const phoneInput = document.getElementById("field-phone");
-    const description = document.getElementById("field-description");
+    const phoneInput = document.querySelector(".field-phone");
+    const description = document.querySelector(".field-description");
 
     if (phoneInput) {
         phoneInput.addEventListener("input", (e) => {

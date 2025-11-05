@@ -56,7 +56,6 @@ def new_field(request):
         except Exception:
             messages.error(request, f'Erro ao criar o campo, tente novamente mais tarde.')
             return redirect('my_fields')
-
     return render(request, 'organizers/organizer_area/new_field.html')
 
 @login_required()

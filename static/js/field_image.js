@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const photoInput = document.getElementById('field-photo');
+    const photoInput = document.querySelector('.field-photo');
     const imagePreview = document.getElementById('image-preview-container');
     const previewImg = document.getElementById('preview-image');
     const removeImageBtn = document.getElementById('remove-image');

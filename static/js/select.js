@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     let states = [];
     let cities = [];
-    const stateInput = document.querySelector("#field-state");
-    const stateAbbreviationInput = document.querySelector("#state-abbreviation");
-    const stateOptions = document.querySelector("#state-options");
-    const cityInput = document.querySelector("#field-city");
-    const cityOptions = document.querySelector("#city-options");
+    const stateInput = document.querySelector(".field-state");
+    const stateAbbreviationInput = document.querySelector(".state-abbreviation");
+    const stateOptions = document.querySelector(".state-options");
+    const cityInput = document.querySelector(".field-city");
+    const cityOptions = document.querySelector(".city-options");
     const clearBtns = document.querySelectorAll('.clear-filter');
     
     async function fetchStates() {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             states = data.map(state => ({ name: state.nome, abbreviation: state.sigla }));
             fillStateOptions(states);
         } catch (error) {
-            console.error('Erro ao buscar estados:', error);
+            console.error(error);
         }
     }
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             cities = data.map(city => city.nome);
         } catch (error) {
-            console.error('Erro ao buscar cidades:', error);
+            console.error(error);
         }
     }
 
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = btn.parentElement.querySelector('input');
             input.value = "";
 
-            if (input.id === 'field-state') {
+            if (input.classList.contains('field-state')) {
                 fillStateOptions(states);
                 stateInput.readOnly = false;
                 cityInput.disabled = true;
@@ -125,6 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    async function initializeFields() {
+
+        if (stateInput.value && stateAbbreviationInput.value) {
+            stateInput.readOnly = true;
+            cityInput.disabled = false;
+            
+            await fetchCitiesByStateId(stateAbbreviationInput.value);
+            fillCityOptions(cities);
+        }
+    }
 
     fetchStates();
+    initializeFields();
 });
