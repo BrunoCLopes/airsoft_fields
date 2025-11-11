@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 def signUp(request):
     if request.method == 'POST':
         try:
-            username = request.POST.get('signUp-username')
-            email = request.POST.get('signUp-email')
+            username = request.POST.get('signUp-username').strip()
+            email = request.POST.get('signUp-email').strip()
             password = request.POST.get('signUp-password')
             confirmPassword = request.POST.get('signUp-confirm-password')
  
@@ -34,7 +34,7 @@ def signUp(request):
 def signIn(request):
     if request.method == "POST":
         try:
-            email = request.POST.get('signIn-email')
+            email = request.POST.get('signIn-email').strip()
             password = request.POST.get('signIn-password')
             
             organizer = authenticate(request, username=email, password=password)

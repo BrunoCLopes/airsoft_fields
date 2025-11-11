@@ -226,9 +226,9 @@
     {% endfor %}
 {% endif %}
 
-<div class="h-screen bg-white pt-10 shadow-2xl">
+<div class="flex-1 bg-white pt-10 shadow-2xl">
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pl-6 pr-6"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pl-6 pr-6 mb-8"
   >
     <!-- Card do Campo 1 -->
     {% if fields %}
@@ -311,7 +311,66 @@
       <p class="text-center col-span-3 text-gray-500">Nenhum campo encontrado.</p>
     {% endif %}
   </div>
+  <!-- Pagination -->
+  {% if fields.paginator.num_pages > 1 %}
+    <nav class="pagination mb-8 flex gap-2 justify-center items-center ">
+    <a href="?{% if fields.has_previous %}{{ base_qs }}page={{ fields.previous_page_number }}{% endif %}"
+       class="rounded-full flex items-center justify-center h-8 w-8
+              {% if fields.has_previous %}hover:bg-indigo-300/35 text-gray-800{% else %}cursor-not-allowed text-gray-400{% endif %}">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+           stroke-width="2.25" stroke="currentColor" class="size-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </a>
+
+    {% if fields.number > 2 %}
+      <a href="?{{ base_qs }}page=1"
+         class="font-medium text-gray-800 rounded-full flex items-center justify-center h-8 w-8 hover:bg-indigo-300/35">1</a>
+      {% if fields.number > 3 %}
+        <span class="font-medium text-gray-800">...</span>
+      {% endif %}
+    {% endif %}
+
+    {% if fields.number > 1 %}
+      <a href="?{{ base_qs }}page={{ fields.number|add:"-1" }}"
+         class="font-medium text-gray-800 rounded-full flex items-center justify-center h-8 w-8 hover:bg-indigo-300/35">
+        {{ fields.number|add:"-1" }}
+      </a>
+    {% endif %}
+
+    <span class="font-medium rounded-full flex items-center justify-center h-8 w-8 bg-indigo-600 text-white">
+      {{ fields.number }}
+    </span>
+
+    {% if fields.number < fields.paginator.num_pages %}
+      <a href="?{{ base_qs }}page={{ fields.number|add:1 }}"
+         class="font-medium text-gray-800 rounded-full flex items-center justify-center h-8 w-8 hover:bg-indigo-300/35">
+        {{ fields.number|add:1 }}
+      </a>
+    {% endif %}
+
+    {% if fields.number < fields.paginator.num_pages|add:"-1" %}
+      {% if fields.number < fields.paginator.num_pages|add:"-2" %}
+        <span class="font-medium text-gray-800">...</span>
+      {% endif %}
+      <a href="?{{ base_qs }}page={{ fields.paginator.num_pages }}"
+         class="font-medium text-gray-800 rounded-full flex items-center justify-center h-8 w-8 hover:bg-indigo-300/35">
+        {{ fields.paginator.num_pages }}
+      </a>
+    {% endif %}
+
+    <a href="?{% if fields.has_next %}{{ base_qs }}page={{ fields.next_page_number }}{% endif %}"
+       class="rounded-full flex items-center justify-center h-8 w-8
+              {% if fields.has_next %}hover:bg-indigo-300/35 text-gray-800{% else %}cursor-not-allowed text-gray-400{% endif %}">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+           stroke-width="2.25" stroke="currentColor" class="size-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </a>
+    </nav>
+  {% endif %}
 </div>
+
 <div id="details-modal" class="hidden modal-bg close-modal fixed inset-0 bg-gray-900/50 z-50 flex items-center justify-center">
   <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto scrollbar-hidden mx-4">
     <!-- Header -->

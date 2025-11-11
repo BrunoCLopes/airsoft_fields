@@ -22,6 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         photo.classList.remove('h-full', 'w-full');
         photo.classList.add('size-14');
         photo.src = '/static/img/default_photo.svg';
-        removeFlag.value = 'true';
+        removeFlag.value = 'True';
     });
 });

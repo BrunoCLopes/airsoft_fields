@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from fields.models import Field
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -23,9 +24,19 @@ def index(request):
             applied_filters[get_param] = query_value
             fields = fields.filter(**filter_args)
 
+    paginator = Paginator(fields, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    params = request.GET.copy()
+    params.pop('page', None)
+    base_qs = params.urlencode()
+    base_qs = f"{base_qs}&" if base_qs else ""
+
     return render(request, "fields/index.html", {
-            'fields': fields,
-            'applied_filters': applied_filters
+            'fields': page_obj,
+            'applied_filters': applied_filters,
+            'base_qs': base_qs
         })
 
 def about(request):

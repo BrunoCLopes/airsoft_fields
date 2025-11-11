@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from urllib3 import request
 from fields.models import Field, FieldPhoto
 from django.contrib.auth.decorators import login_required
 from organizers.validators import validate_state, validate_city
@@ -16,15 +15,15 @@ def my_fields(request):
 def new_field(request):
     if request.method == 'POST':
         try:
-            field_name = request.POST.get('field-name')
-            field_type = request.POST.get('field-type')
-            address = request.POST.get('field-address')
-            state = request.POST.get('field-state')
-            state_abbreviation = request.POST.get('state-abbreviation')
-            city = request.POST.get('field-city')
-            phone = request.POST.get('field-phone')
-            description = request.POST.get('field-description')
-            operating_hours = request.POST.get('field-hours')
+            field_name = request.POST.get('field-name').strip()
+            field_type = request.POST.get('field-type').strip()
+            address = request.POST.get('field-address').strip()
+            state = request.POST.get('field-state').strip()
+            state_abbreviation = request.POST.get('state-abbreviation').strip()
+            city = request.POST.get('field-city').strip()
+            phone = request.POST.get('field-phone').strip()
+            description = request.POST.get('field-description').strip()
+            operating_hours = request.POST.get('field-hours').strip()
             field_photo = request.FILES.get('field-photo')
             user = request.user
 
@@ -67,17 +66,17 @@ def new_field(request):
 def edit_field(request):
     if request.method == 'POST':
         try:
-            field_id = request.POST.get('field-id-to-edit')
+            field_id = request.POST.get('field-id-to-edit').strip()
             field = Field.objects.get(id=field_id, organizer=request.user)
 
-            edit_visible = request.POST.get('edit-field-status') == 'True'
+            edit_visible = request.POST.get('edit-field-status').strip() == 'True'
 
             updates = {
-                'field_name': request.POST.get('edit-field-name'),
-                'field_type': request.POST.get('edit-field-type'),
-                'phone': request.POST.get('edit-field-phone'),
-                'description': request.POST.get('edit-field-description'),
-                'operating_hours': request.POST.get('edit-field-hours'),
+                'field_name': request.POST.get('edit-field-name').strip(),
+                'field_type': request.POST.get('edit-field-type').strip(),
+                'phone': request.POST.get('edit-field-phone').strip(),
+                'description': request.POST.get('edit-field-description').strip(),
+                'operating_hours': request.POST.get('edit-field-hours').strip(),
                 'visible': edit_visible,
             }
 
@@ -123,7 +122,7 @@ def edit_field(request):
 def delete_field(request):
     if request.method == 'POST':
         try:
-            field_id = request.POST.get('field-id-to-delete')
+            field_id = request.POST.get('field-id-to-delete').strip()
             field = Field.objects.get(id=field_id, organizer=request.user)
 
             field_photo = FieldPhoto.objects.filter(field=field).first()
@@ -150,13 +149,13 @@ def info_user_update(request):
             old_profile_photo = user.profile_photo
 
             updates = {
-                'username': request.POST.get('username'),
-                'email': request.POST.get('user-email'),
-                'phone': request.POST.get('user-phone'),
+                'username': request.POST.get('username').strip(),
+                'email': request.POST.get('user-email').strip(),
+                'phone': request.POST.get('user-phone').strip(),
             }
 
             update_profile_photo = request.FILES.get('profile-photo')
-            remove_requested = (request.POST.get('default-photo') == 'true')
+            remove_requested = (request.POST.get('default-photo').strip() == 'True')
 
             has_photo_change = update_profile_photo is not None or remove_requested
 
