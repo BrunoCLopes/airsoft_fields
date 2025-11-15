@@ -40,6 +40,9 @@ def signIn(request):
             organizer = authenticate(request, username=email, password=password)
 
             if organizer is not None:
+                if not organizer.is_active:
+                    messages.info(request, 'Sua conta ainda não foi aprovada por nossa equipe.')
+                    return redirect('index')
                 login(request, organizer)
                 return redirect('my_fields')
             else:
