@@ -1,6 +1,6 @@
 ## 🔫 Airsoft Fields
 
-Portal para cadastro, gerenciamento e descoberta de campos de airsoft.
+Portal centralizado para visualização de campos de airsoft criados por organizadores do Brasil inteiro. O usuário convencional pode visualizar ou pesquisar campos a partir de filtros sem a necessidade de realizar um login na aplicação. Para que um organizador possa criar seus campos dentro da plataforma, ele deve preencher um formulário de cadastro que será avaliado pela equipe interna em que poderá ou não permitir a criação da conta, garantindo um maior controle de quem poderá gerenciar a plataforma. Um organizador pode criar, editar, deletar e visualizar seus campos ativos dentro da área de organizador que só é acessada a partir de um login dentro da plataforma.
 
 ## 🛠️ Tecnologias Utilizadas
 - Tailwind CSS
