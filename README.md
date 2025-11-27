@@ -22,6 +22,8 @@ git clone https://github.com/BrunoCLopes/airsoft_fields.git
 **2. Crie e ative o ambiente virtual**
 ```bash
 python -m venv venv
+```
+```bash
 venv/Scripts/Activate
 ```
 
