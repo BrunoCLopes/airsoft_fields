@@ -41,3 +41,10 @@ npm install
 ```bash
 npm start
 ```
+
+**6. Acesso à pagina de admin**
+```
+Acesse 127.0.0.1:8000/admin
+e-mail: admin@email.com
+senha: 123
+```
