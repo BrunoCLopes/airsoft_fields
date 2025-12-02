@@ -9,9 +9,9 @@ Portal centralizado para visualização de campos de airsoft criados por organiz
 
 ## 📋 Requisitos
 
-Python
-Node.js & NPM
-Git
+- Python
+- Node.js & NPM
+- Git
 
 ## 📦 Instalação
 **1. Clone o repositório**
